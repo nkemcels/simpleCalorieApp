@@ -1,0 +1,43 @@
+@import "../../../../../../assets/styles/variables/colors.global";
+@import "../../../../../../assets/styles/variables/fonts.global";
+
+.ViewContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 25px 20px 25px;
+    .InnerWrapper {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.ConnectedEmails {
+    padding-bottom: 50px;
+
+    .Header {
+        color: $primary_color;
+        font-size: 16;
+        font-family: $default_font_bold;
+        border-bottom: 1px solid rgba($light_grey_color, 0.5);
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+    }
+
+    .EmailItem {
+        margin-bottom: 7px;
+        padding: 10px 15px;
+        background-color: rgba($light_grey_color, 0.5);
+        border: 1px solid $light_grey_color;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .Name {
+            font-family: $default_font_semibold;
+        }
+    }
+}

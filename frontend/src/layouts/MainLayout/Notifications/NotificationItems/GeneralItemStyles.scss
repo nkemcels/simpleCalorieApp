@@ -1,0 +1,50 @@
+@import "../../../../assets/styles/variables/colors.global";
+@import "../../../../assets/styles/variables/fonts.global";
+
+.Container {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.1s;
+    font-size: 13px;
+    position: relative;
+
+    .DeleteBtn {
+        display: none;
+        position: absolute;
+        bottom: -15px;
+        right: 0px;
+        transform: translateY(-20%);
+        &.Deleting {
+            display: inline-block;
+        }
+    }
+    &:last-child {
+        :global(.ant-timeline-item-tail) {
+            border-left: unset;
+        }
+    }
+
+    &:hover {
+        background-color: rgba($light_grey_color, 0.2);
+        .DeleteBtn {
+            display: inline-block;
+        }
+    }
+
+    &:active {
+        background-color: rgba($light_grey_color, 0.4);
+    }
+
+    :global(.ant-timeline-item-head) {
+        top: 20px;
+        left: 30px;
+        background-color: transparent;
+    }
+
+    :global(.ant-timeline-item-tail) {
+        top: 40px;
+        left: 30px;
+        height: calc(100% - 40px);
+        border-left: 2px solid #eff1fe;
+    }
+}

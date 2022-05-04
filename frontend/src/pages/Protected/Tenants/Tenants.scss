@@ -1,0 +1,69 @@
+@import "../../../assets/styles/variables/colors.global";
+
+.CardContent {
+    width: 100%;
+    height: 100%;
+}
+
+.GenerateKeyContainer {
+    padding: 20px;
+}
+
+.FrontendAppContainer {
+    width: 100%;
+    height: 100%;
+
+    :global(.ant-card-body) {
+        width: 100%;
+        height: 100%;
+    }
+
+    .FormContainer {
+        width: 100%;
+        height: calc(100% - 50px);
+        background-image: -moz-linear-gradient(136deg, rgb(116, 235, 213) 0%, rgb(63, 43, 150) 100%);
+        background-image: -webkit-linear-gradient(136deg, rgb(116, 235, 213) 0%, rgb(63, 43, 150) 100%);
+        background-image: -ms-linear-gradient(136deg, rgb(116, 235, 213) 0%, rgb(63, 43, 150) 100%);
+        padding: 30px 80px 10px 80px;
+        position: relative;
+        // &::after {
+        //     content: "";
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     bottom: 0;
+        //     right: 0;
+        //     background-color: rgba($background_color, 0.7);
+        //     z-index: 0;
+        // }
+        .FormContentCard {
+            width: 100%;
+            height: 100%;
+        }
+
+        .FormItem {
+            padding: 6px 10px 10px 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+
+            .Label {
+                margin-bottom: 5px;
+            }
+
+            .Actions {
+                display: none;
+                position: absolute;
+                top: -7px;
+                right: 5px;
+            }
+
+            &:hover {
+                background-color: rgba($light_grey_color, 0.5);
+
+                .Actions {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}

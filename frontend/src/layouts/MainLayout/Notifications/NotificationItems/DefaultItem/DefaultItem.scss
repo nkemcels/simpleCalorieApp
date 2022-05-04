@@ -1,0 +1,54 @@
+@import "../../../../../assets/styles/variables/colors.global";
+@import "../../../../../assets/styles/variables/fonts.global";
+
+.Container {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.1s;
+    font-size: 13px;
+    &:last-child {
+        :global(.ant-timeline-item-tail) {
+            border-left: unset;
+        }
+    }
+
+    &:hover {
+        background-color: rgba($light_grey_color, 0.2);
+    }
+
+    :global(.ant-timeline-item-head) {
+        top: 20px;
+        left: 30px;
+        background-color: transparent;
+    }
+
+    :global(.ant-timeline-item-tail) {
+        top: 40px;
+        left: 30px;
+        height: calc(100% - 40px);
+        border-left: 2px solid #eff1fe;
+    }
+}
+
+.ContentContainer {
+    width: 100%;
+    padding-left: 5px;
+
+    .DataContainer {
+        width: 100%;
+    }
+    .DateContainer {
+        color: darken($dark_grey_color, 5);
+        font-size: 12px;
+    }
+}
+.ItemIconContainer {
+    width: 30px;
+    height: 30px;
+    background-color: rgba($light_grey_color, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: darken($dark_grey_color, 5);
+}

@@ -1,0 +1,186 @@
+@import "../../../../../assets/styles/variables/colors.global";
+@import "../../../../../assets/styles/variables/fonts.global";
+
+.Container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .AnchorWrapper {
+        // width: 100px;
+        margin-left: 35px;
+        margin-top: 20px;
+        padding-left: 3px;
+
+        color: darken($dark_grey_color, 10);
+    }
+
+    .ContentWrapper {
+        flex: 1;
+    }
+}
+
+.BasicOrgInfoView {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .OwnerWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 0 35px 0 20px;
+        padding-right: 30px;
+        border-right: 1px solid rgba($light_grey_color, 0.5);
+
+        .AvatarWrapper {
+            :global(.ant-avatar) {
+                background-color: $primary_color;
+            }
+        }
+
+        .Names {
+            font-size: 16px;
+            font-family: $default_font_semibold;
+            color: darken($dark_grey_color, 15);
+            margin-top: 5px;
+        }
+        .Desc {
+            color: $dark_grey_color;
+        }
+    }
+
+    .FormContainer {
+        flex: 1;
+        max-width: 700px;
+
+        .Actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+}
+
+.DealerGroupsView {
+    .DealerGroupList {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .DealerGroupItem {
+            width: 250px;
+            padding: 30px 20px;
+            display: flex;
+            margin: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid rgba($light_grey_color, 0.5);
+            background-color: $white_color;
+            border-radius: 5px;
+            box-shadow: 1px 1px 2px rgba($light_grey_color, 0.5);
+            position: relative;
+
+            img {
+                width: 80px;
+            }
+
+            .Name {
+                font-family: $default_font_semibold;
+                margin-top: 10px;
+            }
+
+            .Actions {
+                display: none;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                transform: scale(0);
+                background-color: rgba($dark_grey_color, 0.6);
+                animation: DgroupItemZoomIn 0.1s ease-in;
+            }
+
+            &:hover {
+                .Actions {
+                    display: flex;
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+
+            .StatusTag {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+        }
+    }
+
+    .Placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+        padding: 50px;
+
+        .Title {
+            font-size: 18px;
+            font-family: $default_font_bold;
+            text-align: center;
+        }
+        .Desc {
+            font-size: 16px;
+            text-align: center;
+            color: $dark_grey_color;
+        }
+    }
+}
+
+.DangerActionWrapper {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid rgba($light_grey_color, 0.7);
+    // background-color: rgba($error_color, 0.05);
+    background-color: $white_color;
+
+    .ActionView {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .Title {
+            font-size: 16px;
+            color: darken($error_color, 30);
+        }
+
+        .Action {
+            padding: 0;
+        }
+    }
+
+    .Description {
+        color: darken($dark_grey_color, 20);
+        margin-top: 10px;
+    }
+
+    &:hover {
+        border: 1px solid rgba($error_color, 0.5);
+    }
+}
+
+@keyframes DgroupItemZoomIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

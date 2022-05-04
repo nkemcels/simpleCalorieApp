@@ -1,0 +1,26 @@
+@import "../../assets/styles/variables/colors.global";
+@import "../../assets/styles/variables/fonts.global";
+
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    min-height: 200px;
+
+    .LoadingIcon {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: $primary_color;
+    }
+    .LoadingText {
+        font-size: 16px;
+        font-family: $default_font_semibold;
+        text-align: center;
+    }
+}

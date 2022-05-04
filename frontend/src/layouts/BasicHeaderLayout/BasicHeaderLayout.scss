@@ -1,0 +1,72 @@
+@import "../../assets/styles/variables/colors.global";
+@import "../../assets/styles/variables/fonts.global";
+
+.Container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &.FancyBg {
+        // background: url(../../assets/img/bg1.png);
+        position: relative;
+        background-size: contain;
+        z-index: 1;
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($dark_grey_color, 0.05);
+            z-index: -1;
+        }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($white_color, 0.7);
+            z-index: -1;
+        }
+    }
+
+    .HeaderContainer {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px 0 20px;
+        border-bottom: 1px solid rgba($dark_grey_color, 0.2);
+        background-color: $primary_color;
+        box-shadow: 0 3px 2px rgba($dark_grey_color, 0.5);
+        color: $light_grey_color;
+
+        .LogoWrapper {
+            width: 150px;
+        }
+
+        .Title {
+            font-size: 18px;
+            font-family: $default_font_bold;
+        }
+    }
+
+    .Content {
+        flex: 1;
+        position: relative;
+
+        .InnerContent {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            overflow-x: auto;
+        }
+    }
+}

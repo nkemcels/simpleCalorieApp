@@ -1,0 +1,28 @@
+@import "../../../assets/styles/variables/colors.global";
+.Container {
+    min-height: 200px;
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .ErrorImg {
+        width: 80px;
+    }
+    .ErrorText {
+        font-size: 18px;
+        margin-top: 15px;
+        color: darken($dark_grey_color, 10);
+        text-align: center;
+    }
+    .ErrorDescription {
+        font-size: 14px;
+        margin-top: 10px;
+        color: darken($dark_grey_color, 20);
+        text-align: center;
+    }
+}

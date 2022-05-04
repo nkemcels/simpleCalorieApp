@@ -1,0 +1,112 @@
+@import "../../assets/styles/variables/colors.global";
+@import "../../assets/styles/variables/fonts.global";
+
+.ErrorContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+    .ErrorTitle {
+        font-size: 20px;
+        color: $error_color;
+        font-family: $default_font_semibold;
+    }
+
+    .ErrorText {
+        font-size: 16px;
+        color: $error_color;
+    }
+}
+
+.OrgsViewContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .SelectOrgTitle {
+        font-size: 24px;
+        font-family: $default_font_bold;
+    }
+
+    .SelectOrgDesc {
+        color: #777;
+    }
+
+    .OrgListContainer {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .OrgItemContainer {
+        display: flex;
+        margin: 10px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+        border: 1px solid $light_grey_color;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 1px 1px 3px rgba($dark_grey_color, 0.3);
+        background-color: rgba($color: $dark_grey_color, $alpha: 0.08);
+        width: 150px;
+
+        &:hover {
+            background-color: rgba($primary_color, 0.1);
+            border: 1px solid rgba($primary_color, 0.5);
+        }
+
+        &:active {
+            background-color: rgba($primary_color, 0.2);
+            border: 1px solid rgba($primary_color, 0.7);
+        }
+        .Text {
+            font-size: 16px;
+            margin-top: 10px;
+            font-family: $default_font_semibold;
+        }
+    }
+}
+
+.SubscriptionIssuePage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .Image {
+        img {
+            width: 500px;
+        }
+    }
+
+    .Header {
+        font-size: 25px;
+        font-family: $default_font_bold;
+        margin-bottom: 10px;
+    }
+    .SubStatusContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        padding: 8px 15px;
+        background-color: rgba($dark_grey_color, 0.2);
+
+        .Name {
+            margin-right: 40px;
+            font-family: $default_font_bold;
+        }
+    }
+    .Description {
+        font-size: 17px;
+    }
+}

@@ -1,0 +1,37 @@
+@import "../../../../../assets/styles/variables/colors.global";
+@import "../../../../../assets/styles/variables/fonts.global";
+
+.Container {
+    width: 100%;
+    height: 100%;
+}
+
+.NotificationSettingsContainer {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+
+    .ItemTitle {
+        font-family: $default_font_semibold;
+        margin-bottom: 7px;
+    }
+
+    .ItemContent {
+        .ItemCheckbox {
+            font-size: 16px;
+        }
+        .ItemDescription {
+            color: lighten($dark_color, 30);
+            margin-bottom: 25px;
+            margin-left: 25px;
+            font-size: 13px;
+        }
+    }
+}
+
+.PauseNotfContainer {
+    .Text {
+        color: $dark_grey_color;
+        margin-top: 10px;
+    }
+}

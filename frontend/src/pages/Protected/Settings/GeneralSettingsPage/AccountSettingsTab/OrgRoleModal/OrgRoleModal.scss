@@ -1,0 +1,100 @@
+@import "../../../../../../assets/styles/variables/colors.global";
+@import "../../../../../../assets/styles/variables/fonts.global";
+
+.Container {
+    .HeaderContainer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h4 {
+            font-size: 15px;
+            font-family: $default_font_semibold;
+        }
+    }
+    .ContentContainer {
+        padding-top: 10px;
+    }
+}
+.ModalContainer {
+    padding: 0;
+    :global(div.ant-modal-body) {
+        padding: 0 !important;
+    }
+}
+.RoleModalContainer {
+    width: 100%;
+    height: 100%;
+    padding: 25px 25px 0 25px;
+
+    .DefaultRoleInfo {
+        color: $dark_grey_color;
+        font-size: 12px;
+        margin-bottom: 25px;
+        padding-left: 22px;
+    }
+
+    .DefaultRoleCheck {
+        margin-top: 25px;
+        font-size: 16px;
+        font-family: $default_font_semibold;
+    }
+
+    .RoleModalHeader {
+        padding-bottom: 10px;
+
+        h4 {
+            font-size: 18px;
+            font-family: $default_font_bold;
+            span {
+                color: darken($primary_color, 10);
+            }
+        }
+    }
+    .RoleModalContent {
+        padding: 10px 0 25px 0;
+        position: relative;
+        overflow-y: auto;
+    }
+    .RoleModalFooter {
+        padding-top: 25px;
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid rgba($dark_color, 0.1);
+    }
+
+    .InputGroup {
+        margin-bottom: 15px;
+        .Label {
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-family: $default_font_bold;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .Content {
+            padding: 0;
+        }
+    }
+    .RoleItem {
+        display: flex;
+        align-items: center;
+        &:not(:last-child) {
+            margin-bottom: 12px;
+        }
+        &:hover {
+            .DisplayName {
+                color: darken($dark_grey_color, 35);
+            }
+        }
+
+        .DisplayName {
+            margin-left: 10px;
+            color: darken($dark_grey_color, 20);
+            cursor: pointer;
+            font-size: 13px;
+            font-family: $default_font;
+        }
+    }
+}

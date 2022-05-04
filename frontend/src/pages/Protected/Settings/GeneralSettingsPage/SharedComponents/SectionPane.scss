@@ -1,0 +1,28 @@
+@import "../../../../../assets/styles/variables/colors.global";
+@import "../../../../../assets/styles/variables/fonts.global";
+
+.Section {
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid rgba($light_grey_color, 0.4);
+    box-shadow: 0px 1px 2px rgba($light_grey_color, 0.5);
+    background-color: rgba($light_grey_color, 0.1);
+    .Header {
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        color: $primary_color;
+
+        .Icon {
+            margin-right: 7px;
+        }
+
+        .NameWrapper {
+            font-size: 18px;
+            font-family: $default_font_semibold;
+        }
+    }
+    .DetailsWrapper {
+        padding: 0;
+    }
+}

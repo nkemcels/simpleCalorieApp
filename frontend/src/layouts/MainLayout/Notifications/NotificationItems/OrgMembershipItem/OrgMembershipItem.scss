@@ -1,0 +1,46 @@
+@import "../../../../../assets/styles/variables/colors.global";
+@import "../../../../../assets/styles/variables/fonts.global";
+
+.ContentContainer {
+    width: 100%;
+    padding-left: 5px;
+
+    .DataContainer {
+        width: 100%;
+        .OrgName {
+            font-family: $default_font_semibold;
+            color: $dark_color;
+            text-decoration: underline;
+            text-decoration-color: $light_grey_color;
+            margin: 0 5px;
+        }
+        .OwnerName {
+            font-family: $default_font_semibold;
+            margin: 0 5px;
+        }
+    }
+    .DateContainer {
+        color: darken($dark_grey_color, 5);
+        font-size: 12px;
+    }
+}
+.ItemIconContainer {
+    width: 30px;
+    height: 30px;
+    background-color: rgba($light_grey_color, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: darken($dark_grey_color, 5);
+
+    &.Assigned {
+        background-color: rgba($success_color, 0.3);
+        color: darken($success_color, 5);
+    }
+
+    &.Unassigned {
+        background-color: rgba(#d84315, 0.3);
+        color: darken(#d84315, 5);
+    }
+}

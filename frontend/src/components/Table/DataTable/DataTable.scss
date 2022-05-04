@@ -1,0 +1,56 @@
+@import "../../../assets/styles/variables/colors.global";
+@import "../../../assets/styles/variables/fonts.global";
+
+.Container {
+    width: 100%;
+
+    .TopHeaderControls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .SearchFieldWrapper {
+            flex: 1;
+            max-width: 500px;
+            padding-right: 25px;
+        }
+        .ActionsWrapper {
+            margin-right: 10px;
+        }
+    }
+    .FiltersContainer {
+        padding: 7px 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .FilterItem {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 30px;
+            background-color: darken($dark_grey_color, 20);
+            color: $white_color;
+            margin: 2px;
+
+            .Col {
+                color: lighten($primary_color, 30);
+                font-size: 12px;
+            }
+
+            .Vals {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+
+            .CloseBtn {
+                margin-left: 10px;
+                cursor: pointer;
+                color: lighten($error_color, 30);
+            }
+        }
+    }
+    .TableContainer {
+        margin-top: 7px;
+    }
+}

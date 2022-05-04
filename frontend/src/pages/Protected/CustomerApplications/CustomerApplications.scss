@@ -1,0 +1,51 @@
+.CardContent {
+    width: 100%;
+    height: 100%;
+}
+
+.PhotoViewContainer {
+    width: 100%;
+    height: 100%;
+
+    .PhotoCard {
+        width: 100%;
+        margin-bottom: 50px;
+        :global(.ant-card-body) {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .Title {
+            font-size: 20px;
+            font-family: var(--default_font_bold);
+            color: var(--primary_color);
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        img.Photo {
+            width: 600px;
+            display: inline-block;
+            height: auto;
+        }
+    }
+}
+
+.ApplicationStatus {
+    display: inline-block;
+    padding: 5px 15px;
+    background-color: orange;
+    border-radius: 10px;
+
+    &.Approved {
+        background-color: #aeffc6;
+        color: #005248;
+    }
+
+    &.Rejected {
+        background-color: #ffcdd2;
+        color: #b71c1c;
+    }
+}
