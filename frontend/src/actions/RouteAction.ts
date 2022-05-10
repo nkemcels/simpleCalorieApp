@@ -12,6 +12,11 @@ const volatilePaths: string[] = [];
 const activeWindows: { [k: string]: Window | null } = {};
 
 export class RouteAction {
+    /**
+     *
+     * @param queryStrings
+     * @returns
+     */
     private static getRouteQueryString(queryStrings: { [k: string]: string | undefined }) {
         let qs = "";
 
@@ -42,110 +47,19 @@ export class RouteAction {
     }
 
     static gotoHome(): void {
-        RouteAction.goto(allRoutes.HOME_ROUTE);
+        RouteAction.goto(allRoutes.HOME_ROUTES);
     }
 
     static gotoLogin(redirectTo?: string): void {
         RouteAction.goto(allRoutes.LOGIN_ROUTE, undefined, undefined, { redirect: redirectTo });
     }
 
+    static gotoSignup(redirectTo?: string): void {
+        RouteAction.goto(allRoutes.SIGNUP_ROUTE, undefined, undefined, { redirect: redirectTo });
+    }
+
     static gotoLogout(): void {
         RouteAction.goto(allRoutes.LOGOUT_ROUTE);
-    }
-
-    static getSingleApplicationRoute(applicationId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_APPLICATION_ROUTE, { applicationId });
-    }
-
-    static getSingleTenantRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_ROUTE, { tenantId });
-    }
-
-    static getSingleTenantOverviewRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_OVERVIEW_ROUTE, { tenantId });
-    }
-
-    static getSingleApplicationDetailsRoute(applicationId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_APPLICATION_DETAILS_ROUTE, { applicationId });
-    }
-
-    static getSingleApplicationPhotosRoute(applicationId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_APPLICATION_PHOTOS_ROUTE, { applicationId });
-    }
-
-    static getSingleCustomerRoute(customerId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_CUSTOMER_ROUTE, { customerId });
-    }
-
-    static getSingleCustomerOverviewRoute(customerId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_CUSTOMER_OVERVIEW_ROUTE, { customerId });
-    }
-
-    static getSingleApplicationDocsRoute(applicationId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_APPLICATION_DOCUMENTS_ROUTE, { applicationId });
-    }
-
-    static getSingleTenantDevicesRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_DEVICES_ROUTE, { tenantId });
-    }
-
-    static getSingleTenantFrontendAppRoute(tenantId: string, applicationId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_FRONTEND_APPLICATION_ROUTE, { tenantId, applicationId });
-    }
-
-    static gotoSingleTenantFrontendAppRoute(tenantId: string, applicationId: string) {
-        const route = RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_FRONTEND_APPLICATION_ROUTE, { tenantId, applicationId });
-        RouteAction.goto(route);
-    }
-
-    static getSingleTenantUsersRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_USERS_ROUTE, { tenantId });
-    }
-
-    static getSingleTenantAppsRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_APPLICATIONS_ROUTE, { tenantId });
-    }
-
-    static getSingleTenantAPIAccessRoute(tenantId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_TENANT_API_KEYS_ROUTE, { tenantId });
-    }
-
-    static gotoSingleTenantRoute(tenantId: string) {
-        RouteAction.goto(RouteAction.getSingleTenantRoute(tenantId));
-    }
-
-    //
-    static getSingleCustomerDevicesRoute(customerId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_CUSTOMER_DEVICES_ROUTE, { customerId });
-    }
-
-    static getSingleCustomerUsersRoute(customerId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_CUSTOMER_USERS_ROUTE, { customerId });
-    }
-
-    static getSingleCustomerApplicationRoute(customerId: string) {
-        return RouteAction.formatRoutePath(allRoutes.SINGLE_CUSTOMER_APPLICATION_ROUTE, { customerId });
-    }
-
-    static gotoSingleCustomerRoute(customerId: string) {
-        RouteAction.goto(RouteAction.getSingleCustomerRoute(customerId));
-    }
-    //
-
-    static gotoSingleCustomerApplicationRoute(applicationId: string) {
-        RouteAction.goto(RouteAction.getSingleApplicationRoute(applicationId));
-    }
-
-    static gotoAllCustomers(): void {
-        RouteAction.goto(allRoutes.CUSTOMERS_ROUTE);
-    }
-
-    static gotoAllTenants(): void {
-        RouteAction.goto(allRoutes.TENANTS_ROUTE);
-    }
-
-    static gotoAllCustomerApplications(): void {
-        RouteAction.goto(allRoutes.APPLICATIONS_ROUTE);
     }
 
     static canGoBack() {

@@ -1,13 +1,11 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route, useHistory, Redirect } from "react-router-dom";
-import ProtectedScreenHome from "../pages/Protected";
-import { HOME_ROUTE, LOGOUT_ROUTE, LOGIN_ROUTE, SIGNUP_ROUTE } from "../constants/appRoutes";
-import RouteComponentHOC from "./routeHelpers/RouteComponent";
-import SignupPage from "../pages/Authentication/Signup/Signup";
+import { AUTH_ROUTES, HOME_ROUTES } from "../constants/appRoutes";
 import RequiresAuth from "./routeHelpers/RequiresAuth";
 import RequiresNoAuth from "./routeHelpers/RequiresNoAuth";
-import LogoutPage from "../pages/Authentication/Logout/Logout";
 import { AppStoreActions } from "../redux/services/app/actions";
+import AuthRoutes from "../pages/Authentication";
+import ProtectedRoutes from "../pages/Protected";
 
 /**
  * Synchronizes the current route path/state with the store
@@ -26,10 +24,9 @@ const AppRoutes = () => {
         <Router>
             <GlobalRouterProvider />
             <Switch>
-                <Route path={HOME_ROUTE} component={RequiresAuth(ProtectedScreenHome)} />
-                <Route path={SIGNUP_ROUTE} component={RequiresNoAuth(SignupPage)} />
-                <Route path={LOGOUT_ROUTE} component={RouteComponentHOC(LogoutPage)} />
-                <Redirect to={HOME_ROUTE} push />
+                <Route path={HOME_ROUTES} component={RequiresAuth(ProtectedRoutes)} />
+                <Route path={AUTH_ROUTES} component={RequiresNoAuth(AuthRoutes)} />
+                <Redirect to={HOME_ROUTES} push />
             </Switch>
         </Router>
     );

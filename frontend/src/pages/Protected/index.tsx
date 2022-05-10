@@ -32,7 +32,7 @@ import { SingleCustomerBlade } from "./Customers/SingleCustomer/SingleCustomerBl
 //     loading: () => <PageInitializing text="Initializing Dashboard Page" />,
 // });
 
-export default () => {
+const ProtectedRoutes = () => {
     const location = useLocation();
     return (
         <Switch location={location}>
@@ -53,3 +53,5 @@ export default () => {
         </Switch>
     );
 };
+
+export default ProtectedRoutes;

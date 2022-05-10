@@ -4,6 +4,7 @@ import Styles from "./Signup.scss";
 import { CheckOutlined, LockFilled } from "@ant-design/icons";
 import { AuthAction } from "../../../actions/AuthAction";
 import illustrationImg from "../../../assets/img/illustration-1.webp";
+import { RouteAction } from "../../../actions/RouteAction";
 
 type TSignupData = {
     firstName: string;
@@ -72,6 +73,13 @@ export const SignupBox: React.FC<SignupBoxProps> = ({ onSignupComplete }) => {
         }
     };
 
+    /**
+     * redirects the user to the login page
+     */
+    const handleGotoLogin = () => {
+        RouteAction.gotoLogin();
+    };
+
     return (
         <Card className={Styles.LoginBoxContainer}>
             <div className={Styles.IllustrationContainer}>
@@ -81,7 +89,7 @@ export const SignupBox: React.FC<SignupBoxProps> = ({ onSignupComplete }) => {
                 <div className={Styles.FormContentContainer}>
                     <div className={Styles.SignInTip}>
                         <div className={Styles.Text}>Already have an account?</div>
-                        <Button size="small" style={{ marginRight: 7 }}>
+                        <Button size="small" style={{ marginRight: 7 }} onClick={handleGotoLogin}>
                             Sign In
                         </Button>
                         instead
