@@ -1,6 +1,6 @@
 import { LOGIN_API, SIGNUP_API, USER_AUTH_CREDENTIALS_API, TOKEN_REFRESH_API } from "../constants/apiEndpoints";
 import { HTTPHelper } from "../misc/httpHelper";
-import { TAuthCredentials, TAuthInfo, TLoginData, TSignupData } from "../models/Auth/Auth";
+import { TAuthCredentials, TLoginData, TSignupData } from "../models/Auth/Auth";
 import { QueryResultCallback } from "../models/Callback/Callback";
 import { AuthStoreActions } from "../redux/services/auth/actions";
 import { UserStoreActions } from "../redux/services/user/actions";
@@ -16,18 +16,13 @@ export class AuthAction {
     //     }
     // }
 
-    static async refreshToken(cb: QueryResultCallback<TLoginData | boolean | undefined>, token?: string | null) {
+    static async refreshToken(cb: QueryResultCallback<TLoginData | boolean | undefined>) {
         try {
-            const mToken = token || AuthAction.store.getUserToken();
-            if (mToken) {
-                const resp = await HTTPHelper.get(TOKEN_REFRESH_API, HTTPHelper.tokenConfig(mToken));
-                const data: TLoginData = resp.data;
-                AuthAction.store.saveUserToken(data.accessToken);
-                UserStoreActions.saveUser(data.userData);
-                cb(null, resp.data);
-            } else {
-                cb("Not Authorized", true);
-            }
+            const resp = await HTTPHelper.get(TOKEN_REFRESH_API);
+            const data: TLoginData = resp.data;
+            AuthAction.store.saveUserToken(data.accessToken);
+            UserStoreActions.saveUser(data.userData);
+            cb(null, resp.data);
         } catch (err: any) {
             const isFailedAuth = Boolean(err.response && err.response.status === 401);
             const errMsg = HTTPHelper.getResponseErrorMsg(err);
@@ -35,8 +30,7 @@ export class AuthAction {
         }
     }
 
-    static async attemptUserReAuthentication(cb: QueryResultCallback<TLoginData | boolean | undefined>, token?: string) {
-        const mToken = token || AuthAction.store.getUserToken();
+    static async attemptUserReAuthentication(cb: QueryResultCallback<TLoginData | boolean | undefined>) {
         if (AuthAction.store.isUserAuthenticated()) {
             cb(null, true);
         } else {
@@ -45,7 +39,7 @@ export class AuthAction {
                 else {
                     cb(null, false);
                 }
-            }, mToken);
+            });
         }
     }
 

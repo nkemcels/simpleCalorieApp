@@ -22,10 +22,8 @@ export class HTTPHelper {
      * @param {String} token
      */
     static tokenConfig = (token: string, extraHeaders?: { [key: string]: string }) => ({
-        headers: {
-            Authorization: token,
-            ...extraHeaders,
-        },
+        authorization: `Bearer ${token}`,
+        ...extraHeaders,
     });
 
     /**
@@ -117,6 +115,7 @@ export class HTTPHelper {
             const { headers } = req;
             const token = AuthStoreActions.getUserToken();
             const allHeaders = token ? HTTPHelper.tokenConfig(token, headers) : headers;
+
             return axios.request({ ...req, headers: allHeaders });
         } catch (error) {
             verifyHTTPError(error as AxiosError);

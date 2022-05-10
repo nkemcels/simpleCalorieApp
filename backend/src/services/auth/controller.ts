@@ -72,7 +72,7 @@ export class AuthRouteHandler {
      */
     static refreshUserToken = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const token = req.headers ? req.headers["authorization"] : null;
+            const token = (req.headers ? req.headers["authorization"] : "")?.split(" ")[1];
             const adminData = await new AuthManager().refreshUserToken(token || "");
             res.status(200).json(adminData);
         } catch (err) {
