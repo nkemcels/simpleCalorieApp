@@ -1,9 +1,9 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route, useHistory, Redirect } from "react-router-dom";
 import ProtectedScreenHome from "../pages/Protected";
-import { HOME_ROUTE, LOGOUT_ROUTE, LOGIN_ROUTE } from "../constants/appRoutes";
+import { HOME_ROUTE, LOGOUT_ROUTE, LOGIN_ROUTE, SIGNUP_ROUTE } from "../constants/appRoutes";
 import RouteComponentHOC from "./routeHelpers/RouteComponent";
-import LoginPage from "../pages/Authentication/Login/Login";
+import SignupPage from "../pages/Authentication/Signup/Signup";
 import RequiresAuth from "./routeHelpers/RequiresAuth";
 import RequiresNoAuth from "./routeHelpers/RequiresNoAuth";
 import LogoutPage from "../pages/Authentication/Logout/Logout";
@@ -27,7 +27,7 @@ const AppRoutes = () => {
             <GlobalRouterProvider />
             <Switch>
                 <Route path={HOME_ROUTE} component={RequiresAuth(ProtectedScreenHome)} />
-                <Route path={LOGIN_ROUTE} component={RequiresNoAuth(LoginPage)} />
+                <Route path={SIGNUP_ROUTE} component={RequiresNoAuth(SignupPage)} />
                 <Route path={LOGOUT_ROUTE} component={RouteComponentHOC(LogoutPage)} />
                 <Redirect to={HOME_ROUTE} push />
             </Switch>

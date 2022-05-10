@@ -1,5 +1,5 @@
-declare namespace LoginScssNamespace {
-    export interface ILoginScss {
+declare namespace SignupScssNamespace {
+    export interface ISignupScss {
         ActionWrapper: string;
         Container: string;
         ErrorAlert: string;
@@ -20,9 +20,9 @@ declare namespace LoginScssNamespace {
     }
 }
 
-declare const LoginScssModule: LoginScssNamespace.ILoginScss & {
+declare const SignupScssModule: SignupScssNamespace.ISignupScss & {
     /** WARNING: Only available when `css-loader` is used without `style-loader` or `mini-css-extract-plugin` */
-    locals: LoginScssNamespace.ILoginScss;
+    locals: SignupScssNamespace.ISignupScss;
 };
 
-export = LoginScssModule;
+export = SignupScssModule;
