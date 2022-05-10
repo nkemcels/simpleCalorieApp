@@ -63,7 +63,8 @@ export class AuthRouteHandler {
     };
 
     /**
-     * Refreshes a user's token if and only if it expired.
+     * Refreshes a user's token if and only if it hasn't expired.
+     * The user is issued a new token with a prolonged expiration time.
      *
      * @param req
      * @param res

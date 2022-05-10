@@ -1,37 +1,37 @@
 import { BadRequestError } from "../../errorTypes/BadRequestError";
 import { UnAuthorizedRequestError } from "../../errorTypes/UnAuthorizedRequestError";
-import { UserAuthCredentials, AdminLoginData } from "../../models/appTypes/Auth";
+import { UserAuthCredentials, UserLoginData } from "../../models/appTypes/Auth";
 import { UserDoc, User, UserAttr } from "../../models/db/User/User";
 import { JsonWebToken } from "../../utils/JWTManager";
 import { PasswordManager } from "../../utils/Password";
 
 export class AuthManager {
-    private getUserAuthData = (user: UserDoc): AdminLoginData => {
-        const { password, ...adminData } = user.toJSON();
+    private getUserAuthData = (user: UserDoc): UserLoginData => {
+        const { password, ...userData } = user.toJSON();
         const tokenData = { adminId: user._id, email: user.email };
         const token = JsonWebToken.generateToken(tokenData);
         return {
-            access_token: token,
-            adminId: user._id,
-            token_type: "Bearer",
-            expires_in: JsonWebToken.getTokenExpirationTime(token)!,
-            adminData: adminData,
+            accessToken: token,
+            userId: user._id,
+            tokenType: "Bearer",
+            expiresIn: JsonWebToken.getTokenExpirationTime(token)!,
+            userData: userData,
         };
     };
 
     authenticateUser = async (creds: UserAuthCredentials) => {
         let { email, password } = creds;
         if (!email || !password) throw new BadRequestError("Missing email or password");
-        const admin = await User.findOne({ email }).select("+password").populate("organizations");
-        if (admin) {
-            const valid = await PasswordManager.comparePassword(password, admin.password || "");
+        const user = await User.findOne({ email }).select("+password").populate("organizations");
+        if (user) {
+            const valid = await PasswordManager.comparePassword(password, user.password || "");
             if (valid) {
-                const adminLoginData = this.getUserAuthData(admin);
-                return adminLoginData;
+                const userLoginData = this.getUserAuthData(user);
+                return userLoginData;
             }
         }
 
-        throw new UnAuthorizedRequestError();
+        throw new UnAuthorizedRequestError("Invalid credentials.");
     };
 
     async registerUser(userData: UserAttr) {

@@ -6,17 +6,10 @@ export type UserAuthCredentials = {
     password: string;
 };
 
-export type TenantUserAuthCredentials = {
-    email?: string;
-    username?: string;
-    password: string;
-    tenantId: string;
-};
-
-export type AdminLoginData = {
-    access_token: string;
-    adminId: Types.ObjectId;
-    token_type: string;
-    expires_in: number;
-    adminData: LeanDocument<Omit<UserDoc, "password">>;
+export type UserLoginData = {
+    accessToken: string;
+    userId: Types.ObjectId;
+    tokenType: string;
+    expiresIn: number;
+    userData: LeanDocument<Omit<UserDoc, "password">>;
 };
