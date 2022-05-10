@@ -5,14 +5,7 @@ import { CheckOutlined, LockFilled } from "@ant-design/icons";
 import { AuthAction } from "../../../actions/AuthAction";
 import illustrationImg from "../../../assets/img/illustration-1.webp";
 import { RouteAction } from "../../../actions/RouteAction";
-
-type TSignupData = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-};
+import { TSignupData } from "../../../models/Auth/Auth";
 
 type SignupBoxProps = {
     onSignupComplete: () => void;
@@ -35,7 +28,16 @@ export const SignupForm: React.FC<SignupFormProps> = ({ onSignupComplete, loadin
             <Form.Item name="password" label="Password" rules={[{ required: true }]}>
                 <Input.Password placeholder="Choose a password..." disabled={loading} />
             </Form.Item>
-            <Form.Item name="confirmPassword" label="Confirm Password" rules={[{ required: true }]}>
+            <Form.Item
+                name="confirmPassword"
+                label="Confirm Password"
+                rules={[
+                    ({ getFieldValue }) => ({
+                        validator: (_, val) =>
+                            val === getFieldValue("password") ? Promise.resolve() : Promise.reject("Confirmation password doesn't match"),
+                    }),
+                ]}
+            >
                 <Input.Password placeholder="Confirm your password..." disabled={loading} />
             </Form.Item>
             <div className={Styles.ActionWrapper}>
@@ -64,7 +66,8 @@ export const SignupBox: React.FC<SignupBoxProps> = ({ onSignupComplete }) => {
     const handleCreateAccount = async (data: TSignupData) => {
         try {
             setLoading(true);
-            await AuthAction.loginUser(data.email, data.password);
+            await AuthAction.createUserAccount(data);
+            await AuthAction.loginUser(data);
             onSignupComplete();
         } catch (error) {
             notification.error({ message: "Authentication Failed", description: `${error}` });

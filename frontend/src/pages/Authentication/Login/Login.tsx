@@ -7,27 +7,29 @@ import { CheckOutlined, LockFilled } from "@ant-design/icons";
 import { AuthAction } from "../../../actions/AuthAction";
 import SimpleCenteredLayout from "../../../layouts/SimpleLayout/SimpleCenteredLayout";
 import { RouteAction } from "../../../actions/RouteAction";
+import { TAuthCredentials } from "../../../models/Auth/Auth";
 
 type LoginBoxProps = {
-    authDomain?: string | null;
-    authID?: string | null;
-    redirectTo?: string;
+    onLoginComplete: () => void;
 };
 
-const LoginBox: React.FC<LoginBoxProps> = ({ authDomain, authID, redirectTo }) => {
+const LoginBox: React.FC<LoginBoxProps> = ({ onLoginComplete }) => {
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
+    const [authFaileError, setAuthFailedError] = useState<string>();
 
     const handleGotoSignup = () => {
         RouteAction.gotoSignup();
     };
 
-    const handleLogin = async (data: { email: string; password: string }) => {
+    const handleLogin = async (data: TAuthCredentials) => {
         try {
             setLoading(true);
-            await AuthAction.loginUser(data.email, data.password);
+            setAuthFailedError(undefined);
+            await AuthAction.loginUser(data);
+            onLoginComplete();
         } catch (error) {
-            notification.error({ message: "Authentication Failed", description: `${error}` });
+            setAuthFailedError(`${error}`);
+            // notification.error({ message: "Authentication Failed", description: `${error}` });
         } finally {
             setLoading(false);
         }
@@ -42,9 +44,10 @@ const LoginBox: React.FC<LoginBoxProps> = ({ authDomain, authID, redirectTo }) =
                     <LockFilled style={{ fontSize: 32 }} />
                 </div>
             </div>
+            {authFaileError && <Alert message={authFaileError} type="error" closable showIcon />}
             <div className={Styles.FormContent}>
                 <Form layout="vertical" onFinish={handleLogin}>
-                    <Form.Item name="email" label="Email" rules={[{ required: true }]}>
+                    <Form.Item name="email" label="Email" rules={[{ required: true, type: "email" }]}>
                         <Input placeholder="Enter email..." disabled={loading} />
                     </Form.Item>
                     <Form.Item name="password" label="Password" rules={[{ required: true }]}>
@@ -80,13 +83,18 @@ const LoginPage = () => {
     const [redirectTo, setRedirectTo] = useState<string>();
     const history = useHistory();
 
+    const handleGotoLogin = () => {
+        if (redirectTo) RouteAction.goto(redirectTo);
+        else RouteAction.gotoHome();
+    };
+
     useEffect(() => {
         setRedirectTo(history.location.state);
     }, []);
     return (
         <SimpleCenteredLayout>
             <div className={Styles.Container}>
-                <LoginBox redirectTo={redirectTo} />
+                <LoginBox onLoginComplete={handleGotoLogin} />
             </div>
         </SimpleCenteredLayout>
     );

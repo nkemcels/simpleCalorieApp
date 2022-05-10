@@ -46,8 +46,3 @@ Command | Description
 
 **Note**: replace `yarn` with `npm` in `package.json` if you use npm.
 
-## See also
-* [React Webpack Babel Starter](https://github.com/vikpe/react-webpack-babel-starter)
-* [Snowpack](https://github.com/snowpackjs/snowpack)
-* [Create React App](https://github.com/facebook/create-react-app)
-* [Isomorphic Webapp Starter](https://github.com/vikpe/isomorphic-webapp-starter)

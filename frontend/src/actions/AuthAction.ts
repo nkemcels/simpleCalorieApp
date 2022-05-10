@@ -1,47 +1,43 @@
-import { GET_AUTH_INFO_API as AUTH_INFO_API, LOGIN_API, USER_AUTH_CREDENTIALS_API, USER_TOKEN_REFRESH_API } from "../constants/apiEndpoints";
-import { apiHttpGET, apiHttpPOST, apiHttpPUT, getResponseErrorMsg, tokenConfig } from "../misc/httpHelper";
-import { TAuthInfo, TLoginData } from "../models/Auth/Auth";
+import { LOGIN_API, SIGNUP_API, USER_AUTH_CREDENTIALS_API, TOKEN_REFRESH_API } from "../constants/apiEndpoints";
+import { HTTPHelper } from "../misc/httpHelper";
+import { TAuthCredentials, TAuthInfo, TLoginData, TSignupData } from "../models/Auth/Auth";
 import { QueryResultCallback } from "../models/Callback/Callback";
 import { AuthStoreActions } from "../redux/services/auth/actions";
 import { UserStoreActions } from "../redux/services/user/actions";
 
-type AuthManagerConfig = {
-    postLoginCallback: (data: TLoginData) => void;
-    postLogoutCallback: () => void;
-};
-
 export class AuthAction {
-    static async fetchAuthInfo(cb: QueryResultCallback<TAuthInfo>) {
-        try {
-            const resp = await apiHttpGET(AUTH_INFO_API);
-            cb(null, resp.data);
-        } catch (err: any) {
-            cb(err);
-        }
-    }
+    static store = AuthStoreActions;
+    // static async fetchAuthInfo(cb: QueryResultCallback<TAuthInfo>) {
+    //     try {
+    //         const resp = await HTTPHelper.get(AUTH_INFO_API);
+    //         cb(null, resp.data);
+    //     } catch (err: any) {
+    //         cb(err);
+    //     }
+    // }
 
     static async refreshToken(cb: QueryResultCallback<TLoginData | boolean | undefined>, token?: string | null) {
         try {
-            const mToken = token || AuthStoreActions.getUserToken();
+            const mToken = token || AuthAction.store.getUserToken();
             if (mToken) {
-                const resp = await apiHttpGET(USER_TOKEN_REFRESH_API, tokenConfig(mToken));
+                const resp = await HTTPHelper.get(TOKEN_REFRESH_API, HTTPHelper.tokenConfig(mToken));
                 const data: TLoginData = resp.data;
-                AuthStoreActions.saveUserToken(data.access_token);
-                UserStoreActions.saveUser(data.adminData);
+                AuthAction.store.saveUserToken(data.accessToken);
+                UserStoreActions.saveUser(data.userData);
                 cb(null, resp.data);
             } else {
                 cb("Not Authorized", true);
             }
         } catch (err: any) {
             const isFailedAuth = Boolean(err.response && err.response.status === 401);
-            const errMsg = getResponseErrorMsg(err);
+            const errMsg = HTTPHelper.getResponseErrorMsg(err);
             cb(errMsg, isFailedAuth);
         }
     }
 
     static async attemptUserReAuthentication(cb: QueryResultCallback<TLoginData | boolean | undefined>, token?: string) {
-        const mToken = token || AuthStoreActions.getUserToken();
-        if (AuthStoreActions.isUserAuthenticated()) {
+        const mToken = token || AuthAction.store.getUserToken();
+        if (AuthAction.store.isUserAuthenticated()) {
             cb(null, true);
         } else {
             AuthAction.refreshToken((err, resp) => {
@@ -53,37 +49,42 @@ export class AuthAction {
         }
     }
 
-    static async loginUser(email: string, password: string) {
+    static async loginUser(creds: TAuthCredentials) {
         try {
-            const resp = await apiHttpPOST(LOGIN_API, undefined, { email, password });
+            const resp = await HTTPHelper.post(LOGIN_API, creds);
             const respData: TLoginData = resp.data;
-            AuthStoreActions.saveUserToken(respData.access_token);
-            UserStoreActions.saveUser(respData.adminData);
-            AuthStoreActions.saveUserAuthCredentials(email, password);
+            AuthAction.store.saveUserToken(respData.accessToken);
+            UserStoreActions.saveUser(respData.userData);
+            AuthAction.store.saveUserAuthCredentials(creds);
 
             return respData;
         } catch (error) {
-            throw new Error(getResponseErrorMsg(error as any));
+            throw new Error(HTTPHelper.getResponseErrorMsg(error as any));
         }
     }
 
-    static async updateCredentials(creds: { email: string; password: string; oldPassword?: string }, autoLogin: boolean) {
+    static async createUserAccount(userAccData: TSignupData) {
         try {
-            const resp = await apiHttpPUT(USER_AUTH_CREDENTIALS_API, creds);
-            if (autoLogin) {
-                return await this.loginUser(creds.email, creds.password);
-            }
+            const resp = await HTTPHelper.post(SIGNUP_API, userAccData);
             return resp.data;
-        } catch (err: any) {
-            throw new Error(getResponseErrorMsg(err));
+        } catch (error) {
+            throw new Error(HTTPHelper.getResponseErrorMsg(error as any));
         }
+    }
+
+    static async updateCredentials(creds: TAuthCredentials & { oldPassword: string }, autoLogin: boolean) {
+        const resp = await HTTPHelper.put(USER_AUTH_CREDENTIALS_API, creds);
+        if (autoLogin) {
+            return await this.loginUser(creds);
+        }
+        return resp.data;
     }
 
     static async getAccessToken() {
-        return AuthStoreActions.getUserToken();
+        return AuthAction.store.getUserToken();
     }
 
     static dispatchLogout() {
-        AuthStoreActions.logoutUser();
+        AuthAction.store.logoutUser();
     }
 }

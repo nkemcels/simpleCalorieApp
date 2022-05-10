@@ -6,6 +6,7 @@ export type AuthStateT = {
     isAuthenticated: boolean;
     isAuthenticating: boolean;
     accessToken?: string;
+    tokenExpiresIn?: number; // unix timestamp
     email?: string;
     password?: string;
 };

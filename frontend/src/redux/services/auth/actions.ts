@@ -1,6 +1,7 @@
 import ActionTypes from "./actionTypes";
 import { getAppStore } from "../../store";
 import { LOCAL_STORAGE_KEYS } from "../../../constants/appVars";
+import { TAuthCredentials } from "../../../models/Auth/Auth";
 
 export class AuthStoreActions {
     static authenticatingUser(authenticating: boolean) {
@@ -16,8 +17,8 @@ export class AuthStoreActions {
         return getAppStore().getState().auth.isAuthenticated;
     }
 
-    static saveUserAuthCredentials(email: string, password: string) {
-        getAppStore().dispatch({ type: ActionTypes.SAVE_AUTH_CREDENTIALS, payload: { email, password } });
+    static saveUserAuthCredentials(creds: TAuthCredentials) {
+        getAppStore().dispatch({ type: ActionTypes.SAVE_AUTH_CREDENTIALS, payload: creds });
     }
 
     static getUserToken() {

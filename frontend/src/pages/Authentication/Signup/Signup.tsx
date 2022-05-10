@@ -3,12 +3,16 @@ import SimpleCenteredLayout from "../../../layouts/SimpleLayout/SimpleCenteredLa
 import Styles from "./Signup.scss";
 import { useHistory } from "react-router-dom";
 import { SignupBox } from "./SignupComponents";
+import { RouteAction } from "../../../actions/RouteAction";
 
 const SignupPage = () => {
     const [redirectTo, setRedirectTo] = useState<string>();
     const history = useHistory();
 
-    const handleSignupComplete = () => {};
+    const handleSignupComplete = () => {
+        if (redirectTo) RouteAction.goto(redirectTo);
+        else RouteAction.gotoHome();
+    };
 
     useEffect(() => {
         setRedirectTo(history.location.state);
