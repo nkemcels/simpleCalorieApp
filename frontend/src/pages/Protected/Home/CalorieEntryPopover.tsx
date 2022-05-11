@@ -49,7 +49,7 @@ const CalorieEntryPopover: React.FC<CalorieEntryPopoverProps> = ({ type, trigger
             trigger="click"
             title={editData ? "Update Calorie Entry" : "New Calorie Entry"}
             visible={visible}
-            onVisibleChange={setVisible}
+            onVisibleChange={(r) => setVisible(r && !disabled)}
             content={
                 <div className={Styles.CalorieEntryPopoverContent} key={`${visible}`}>
                     <Form layout="vertical" onFinish={handleSaveEntry} initialValues={editData}>
