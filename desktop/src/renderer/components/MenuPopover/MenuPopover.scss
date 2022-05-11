@@ -1,0 +1,191 @@
+@import "../../assets/styles/variables/colors.global";
+
+.Overlay {
+    :global(.ant-popover-inner-content) {
+        padding: 0 !important;
+    }
+}
+
+.InputForm {
+    padding: 20px;
+
+    :global(.ant-form-item-label) {
+        font-family: var(--default_font_semibold);
+    }
+
+    .HorzFormItem {
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        & > div {
+            flex-grow: 0 !important;
+        }
+    }
+}
+
+.PopoverContainer {
+    padding: 0;
+    min-width: 350px;
+    max-width: 350px;
+
+    .Header {
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--light_grey_color);
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .Title {
+            font-size: 16px;
+            font-family: var(--default_font_semibold);
+        }
+
+        .BackBtn {
+            position: relative;
+            left: -10px;
+        }
+    }
+
+    .Content {
+        max-height: 500px;
+        position: relative;
+        overflow-y: auto;
+
+        .ContentWrapper {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &.Small {
+        min-width: 250px;
+        max-width: 250px;
+        .MenuOptionsContainer {
+            max-width: 250px;
+            .Item {
+                padding: 8px 10px;
+            }
+        }
+
+        .Header {
+            padding: 6px 10px;
+        }
+    }
+}
+
+.MenuOptionsContainer {
+    max-width: 350px;
+    user-select: none;
+
+    .Item {
+        padding: 12px 20px;
+        cursor: pointer;
+        user-select: none;
+        position: relative;
+
+        &:hover {
+            background-color: rgba($light_grey_color, 0.2);
+        }
+
+        &:active {
+            background-color: rgba($light_grey_color, 0.35);
+        }
+
+        .ItemHeader {
+            display: flex;
+            align-items: center;
+            h4 {
+                padding: 0;
+                margin: 0 0 0 7px;
+                font-family: var(--default_font_semibold);
+                color: var(--black_color);
+            }
+        }
+
+        .ItemDesc {
+            color: darken($dark_grey_color, 10);
+            font-size: 12px;
+        }
+
+        &.Disabled {
+            cursor: not-allowed;
+            .ItemHeader {
+                h4 {
+                    color: var(--dark_grey_color);
+                }
+            }
+            &:hover {
+                background-color: unset;
+            }
+
+            &:active {
+                background-color: unset;
+            }
+        }
+
+        &.Basic {
+            h4 {
+                font-family: var(--default_font) !important;
+            }
+        }
+
+        &.Active {
+            background-color: rgba($light_grey_color, 0.5);
+        }
+
+        .ActiveIndicator {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .ItemGroup {
+        .ItemGroupHeader {
+            padding: 5px 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba($light_grey_color, 0.2);
+            }
+
+            &:active {
+                background-color: rgba($dark_grey_color, 0.2);
+            }
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light_grey_color);
+        }
+    }
+}
+
+.SetupIconsSelectContainer {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .SetupIcon {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba($light_grey_color, 0.5);
+        border-radius: 3px;
+        margin-right: 3px;
+        margin-bottom: 3px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($light_grey_color, 0.5);
+        }
+        &.Active {
+            background-color: $primary_color;
+        }
+    }
+}

@@ -1,0 +1,6 @@
+@import "../../assets/styles/variables/colors.global";
+
+.Highlight {
+    color: darken($success_color, 10);
+    background-color: rgba($success_color, 0.3);
+}

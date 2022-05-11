@@ -1,0 +1,7 @@
+{
+    "entryPoints": ["src/renderer", "src/main"],
+    "exclude": ["**/__tests__/**/*", "(node_modules)", "**/*+(.spec|.e2e|.test).ts", "**/*+(.spec|.e2e|.test).tsx"],
+    "out": "docs",
+    "theme": "node_modules/typedoc-neo-theme/bin/default",
+    "outline": [{}]
+}

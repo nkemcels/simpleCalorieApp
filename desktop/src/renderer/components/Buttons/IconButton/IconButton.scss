@@ -1,0 +1,89 @@
+.Container {
+    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: var(--light_grey_color);
+    }
+
+    &:active {
+        background-color: var(--dark_grey_color);
+    }
+
+    &.Small {
+        width: 24px;
+        height: 24px;
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        :global(.fa) {
+            font-size: 17px;
+        }
+    }
+
+    &.Default {
+        width: 28px;
+        height: 28px;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        :global(.fa) {
+            font-size: 20px;
+        }
+    }
+
+    &.Large {
+        width: 42px;
+        height: 42px;
+
+        svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        :global(.fa) {
+            font-size: 24px;
+        }
+    }
+
+    &.Primary {
+        svg {
+            stroke: var(--primary_color);
+        }
+    }
+
+    &.Active {
+        background-color: var(--light_grey_color);
+    }
+
+    &.Disabled {
+        cursor: not-allowed;
+        svg {
+            stroke: #aaa;
+            fill: #aaa;
+        }
+
+        :global(.fa),
+        :global(.anticon) {
+            color: #aaa;
+        }
+
+        &:hover {
+            background-color: unset;
+        }
+
+        &:active {
+            background-color: unset;
+        }
+    }
+}

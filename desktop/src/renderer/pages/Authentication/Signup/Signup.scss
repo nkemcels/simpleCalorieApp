@@ -1,0 +1,170 @@
+@import "../../../assets/styles/variables/colors.global";
+@import "../../../assets/styles/variables/fonts.global";
+
+.Container {
+    .LoginBoxContainer {
+        width: 400px;
+        box-shadow: 0 7px 25px 5px rgba($color: #000000, $alpha: 0.2);
+        :global(.ant-card-body) {
+            display: flex;
+        }
+
+        .IllustrationContainer {
+            flex: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgba($light_grey_color, 0.2);
+            padding: 22px;
+            .FormContentHeader {
+                margin: 22px 0;
+                padding-bottom: 15px;
+                .WelcomeText {
+                    font-size: 28px;
+                    font-family: $default_font_bold;
+                    color: $dark_color;
+                    text-align: center;
+                }
+                .SubText {
+                    font-size: 18px;
+                    color: var(--dark_grey_color);
+                    text-align: center;
+                }
+            }
+            img {
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+
+        :global(.ant-card-body) {
+            padding: 0;
+        }
+
+        .LoginBoxHeader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: $light_grey_color;
+            position: relative;
+
+            .SigninText {
+                padding: 0;
+                color: $primary_color;
+            }
+
+            .LogoWrapper {
+                background-color: $primary_color;
+                position: absolute;
+                width: 90px;
+                height: 90px;
+                color: #fff;
+                bottom: 0;
+                left: 50%;
+                top: 0;
+                padding: 10px;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .MainContent {
+            padding: 20px 40px;
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            .BottomView {
+                .OrLine {
+                    margin: 30px 0 20px 0;
+                    position: relative;
+                    height: 1px;
+                    background-color: var(--light_grey_color);
+                }
+                .OrText {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    padding: 3px 10px;
+                    color: var(--dark_grey_color);
+                }
+                .SignInTip {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    position: relative;
+                    margin-top: 35px;
+
+                    .Text {
+                        margin-right: 10px;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .FormContentContainer {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .StepsContainer {
+                margin: 5px 0 20px 0;
+                padding-bottom: 20px;
+                // border-bottom: 1px solid var(--background_color);
+            }
+
+            .FormContent {
+                max-width: 400px;
+                width: 80%;
+            }
+        }
+        .ActionWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 20px;
+        }
+    }
+    .SignupPrompt {
+        display: flex;
+        align-items: center;
+        padding-top: 20px;
+        justify-content: center;
+
+        .Text {
+            margin-right: 10px;
+        }
+    }
+
+    .ErrorAlert {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        .LoginBoxContainer {
+            width: 750px;
+        }
+    }
+    @media (min-width: 992px) {
+        .LoginBoxContainer {
+            width: 970px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .LoginBoxContainer {
+            width: 1170px;
+        }
+    }
+}

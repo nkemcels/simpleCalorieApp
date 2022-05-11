@@ -1,0 +1,23 @@
+$default_font: "dm_sansregular";
+$default_font_italic: "dm_sansitalic";
+$default_font_semibold: "dm_sansmedium";
+$default_font_semibold_italic: "dm_sansmedium_italic";
+$default_font_bold: "dm_sansbold";
+$default_font_bold_italic: "dm_sansbold_italic";
+
+$font_size_xs: 9px;
+$font_size_sm: 12px;
+$font_size_md: 14px;
+$font_size_lg: 18px;
+$font_size_xl: 24px;
+
+$default_font_size: $font_size_md;
+
+:root {
+    --default_font: "dm_sansregular";
+    --default_font_italic: "dm_sansitalic";
+    --default_font_semibold: "dm_sansmedium";
+    --default_font_semibold_italic: "dm_sansmedium_italic";
+    --default_font_bold: "dm_sansbold";
+    --default_font_bold_italic: "dm_sansbold_italic";
+}

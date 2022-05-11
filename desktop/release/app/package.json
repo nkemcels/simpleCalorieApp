@@ -1,0 +1,18 @@
+{
+    "name": "trench",
+    "version": "1.0.0",
+    "description": "Gain a deep understanding of your trades with no code or indicators, simply draw on the screen",
+    "main": "./dist/main/main.js",
+    "author": {
+        "name": "Trench Technologies, Inc.",
+        "email": "support@trenchtrading.com",
+        "url": "https://trenchtrading.com"
+    },
+    "scripts": {
+        "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
+        "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts",
+        "postinstall": "yarn electron-rebuild && yarn link-modules"
+    },
+    "dependencies": {},
+    "license": "MIT"
+}

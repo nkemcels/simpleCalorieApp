@@ -1,0 +1,8 @@
+enum ActionTypes {
+    SAVE_DATE_ENTRIES = "SAVE_DATE_ENTRIES",
+    SAVE_CALORIE_STATS = "SAVE_CALORIE_STATS",
+    SET_ACTIVE_DATE = "SET_ACTIVE_DATE",
+    LOGOUT_ACTION = "LOGOUT_ACTION",
+}
+
+export default ActionTypes;
