@@ -67,7 +67,7 @@ This will spin up a new `pm2` instance and run the app in it. So make sure to ha
 -   `src/middlewares` Defines custom express middlewares.
 
 -   `src/models` Defines the database models
--   
+
 -   `src/utils` Defines global utilities used in the app
 
 -   `src/services` REST API calls are grouped into services, with each service performing only specific and predictable operations. Here, a service typically is associated with operations involving a single database model.
