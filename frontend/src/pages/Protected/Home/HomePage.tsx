@@ -22,6 +22,7 @@ type CalorieEntryPopoverProps = {
 const CalorieEntryPopover: React.FC<CalorieEntryPopoverProps> = ({ type, trigger, btnText, promptText, negative, editData }) => {
     const [visible, setVisible] = useState(false);
     const [saving, setSaving] = useState(false);
+
     const handleSaveEntry = async (data: Partial<ICalorieEntry>) => {
         try {
             setSaving(true);
@@ -86,9 +87,20 @@ const ActionsView = () => {
 };
 
 const HomePage = () => {
+    const handleRefreshCalorieStats = () => CalorieEntryAction.refreshCalorieStats(new Date());
+
     useEffect(() => {
         CalorieEntryAction.loadEntries();
     }, []);
+
+    useEffect(() => {
+        // refresh the calorie stats every 5mins
+        // because the user's bmr reduces over time.
+        handleRefreshCalorieStats();
+        const intv = setInterval(handleRefreshCalorieStats, 5 * 60 * 1000);
+        return () => clearInterval(intv);
+    }, []);
+
     return (
         <AppDefaultContent>
             <ActionsView />

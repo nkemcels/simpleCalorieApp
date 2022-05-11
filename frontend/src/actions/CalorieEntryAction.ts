@@ -6,6 +6,7 @@ import {
     CALORIE_ENTRIES_DATERANGE_QUERY_API,
     CALORIE_ENTRIES_DATE_QUERY_API,
     CALORIE_ENTRY_ITEM_API,
+    CALORIE_STATS_API,
     NEW_CALORIE_ENTRY_API,
 } from "../constants/apiEndpoints";
 import { ICalorieEntry } from "../models/CalorieEntry";
@@ -27,32 +28,27 @@ export class CalorieEntryAction {
     }
 
     static async addEntry(data: Partial<ICalorieEntry>) {
-        try {
-            const resp = await HTTPHelper.post(NEW_CALORIE_ENTRY_API, data);
-            CalorieEntryAction.store.addDateEntry(resp.data.createdAt, resp.data);
-            return resp.data;
-        } catch (err: any) {
-            throw err;
-        }
+        const resp = await HTTPHelper.post(NEW_CALORIE_ENTRY_API, data);
+        CalorieEntryAction.store.addDateEntry(resp.data.createdAt, resp.data);
+        return resp.data;
     }
 
     static async updateEntry(entryId: string, data: Partial<ICalorieEntry>, date = CalorieEntryAction.store.getActiveDate()) {
-        try {
-            const resp = await HTTPHelper.post(HTTPHelper.formatUrl(CALORIE_ENTRY_ITEM_API, undefined, { entryId }), data);
-            CalorieEntryAction.store.updateDateEntry(date, entryId, data);
-            return resp.data;
-        } catch (err: any) {
-            throw err;
-        }
+        const resp = await HTTPHelper.post(HTTPHelper.formatUrl(CALORIE_ENTRY_ITEM_API, undefined, { entryId }), data);
+        CalorieEntryAction.store.updateDateEntry(date, entryId, data);
+        return resp.data;
     }
 
     static async deleteEntry(entryId: string, data: Partial<ICalorieEntry>, date = CalorieEntryAction.store.getActiveDate()) {
-        try {
-            const resp = await HTTPHelper.delete(HTTPHelper.formatUrl(CALORIE_ENTRY_ITEM_API, undefined, { entryId }), data);
-            CalorieEntryAction.store.deleteEntry(date, entryId);
-            return resp.data;
-        } catch (err: any) {
-            throw err;
-        }
+        const resp = await HTTPHelper.delete(HTTPHelper.formatUrl(CALORIE_ENTRY_ITEM_API, undefined, { entryId }), data);
+        CalorieEntryAction.store.deleteEntry(date, entryId);
+        return resp.data;
+    }
+
+    static async refreshCalorieStats(date = CalorieEntryAction.store.getActiveDate()) {
+        const dateStr = date.toISOString();
+        const resp = await HTTPHelper.get(HTTPHelper.formatUrl(CALORIE_STATS_API, { date: dateStr }));
+        CalorieEntryAction.store.saveCalorieStats(resp.data);
+        return resp.data;
     }
 }

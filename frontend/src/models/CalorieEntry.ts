@@ -6,3 +6,11 @@ export interface ICalorieEntry {
     createdAt: string; // ISO Date string;
     updatedAt: string; // ISO Date string;
 }
+
+export interface ICalorieStats {
+    totalCalories: number;
+    caloriesLeft: number;
+    bmr: number;
+    burntCalories: number;
+    burntBMR: number;
+}

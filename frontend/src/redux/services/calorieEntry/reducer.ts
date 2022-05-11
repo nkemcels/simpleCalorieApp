@@ -1,10 +1,11 @@
-import { ICalorieEntry } from "../../../models/CalorieEntry";
+import { ICalorieEntry, ICalorieStats } from "../../../models/CalorieEntry";
 import createReducer from "../../utils/createReducer";
 import ActionTypes from "./actionTypes";
 
 export type TCalorieEntryState = {
     data: Record<string, ICalorieEntry[] | undefined>;
     activeDate: Date;
+    calorieStats?: ICalorieStats;
     currentDataLoaded: boolean;
     loadingDateData: boolean;
 };
@@ -22,6 +23,11 @@ export default createReducer<TCalorieEntryState>(initialState, {
         ...state,
         data: { ...state.data, ...payload },
         userDataLoaded: true,
+    }),
+
+    [ActionTypes.SAVE_CALORIE_STATS]: (state, payload: ICalorieStats) => ({
+        ...state,
+        calorieStats: payload,
     }),
 
     [ActionTypes.LOGOUT_ACTION]: (state) => ({

@@ -4,24 +4,16 @@ import { TAuthCredentials, TLoginData, TSignupData } from "../models/Auth";
 import { QueryResultCallback } from "../models/Callback";
 import { AuthStoreActions } from "../redux/services/auth/actions";
 import { UserStoreActions } from "../redux/services/user/actions";
+import { UserAction } from "./UserAction";
 
 export class AuthAction {
     static store = AuthStoreActions;
-    // static async fetchAuthInfo(cb: QueryResultCallback<TAuthInfo>) {
-    //     try {
-    //         const resp = await HTTPHelper.get(AUTH_INFO_API);
-    //         cb(null, resp.data);
-    //     } catch (err: any) {
-    //         cb(err);
-    //     }
-    // }
-
     static async refreshToken(cb: QueryResultCallback<TLoginData | boolean | undefined>) {
         try {
             const resp = await HTTPHelper.get(TOKEN_REFRESH_API);
             const data: TLoginData = resp.data;
             AuthAction.store.saveUserToken(data.accessToken);
-            UserStoreActions.saveUser(data.userData);
+            UserAction.store.saveUser(data.userData);
             cb(null, resp.data);
         } catch (err: any) {
             const isFailedAuth = Boolean(err.response && err.response.status === 401);

@@ -17,9 +17,7 @@ const Content: React.FC<{ loadingText?: string }> = ({ loadingText }) => {
 
 const AppLoadingPage: React.FC<{ loadingText?: string; simple?: boolean }> = ({ loadingText, simple }) => {
     return simple ? (
-        <SimpleCenteredLayout>
-            <Content loadingText={loadingText} />
-        </SimpleCenteredLayout>
+        <Content loadingText={loadingText} />
     ) : (
         <MainLayout>
             <Content loadingText={loadingText} />

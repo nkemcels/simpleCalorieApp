@@ -16,5 +16,6 @@ export const USER_DATA_API = `${BASE_API}/users/me/data`;
 // calorie entry endpoints
 export const NEW_CALORIE_ENTRY_API = `${BASE_API}/calorieEntries/new`;
 export const CALORIE_ENTRY_ITEM_API = `${BASE_API}/calorieEntries/{entryId}`;
+export const CALORIE_STATS_API = `${BASE_API}/calorieEntries/stats`;
 export const CALORIE_ENTRIES_DATE_QUERY_API = `${BASE_API}/calorieEntries/queryDate`;
 export const CALORIE_ENTRIES_DATERANGE_QUERY_API = `${BASE_API}/calorieEntries/queryRange`;

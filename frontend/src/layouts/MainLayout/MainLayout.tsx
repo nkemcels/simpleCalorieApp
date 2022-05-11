@@ -1,8 +1,6 @@
 import React from "react";
-import { HSplitView } from "../../components/HSplitView/HSplitView";
 import AppHeader from "./Header";
 import Styles from "./MainLayout.scss";
-import { AppSidebar } from "./Sidebar";
 
 const MainLayout: React.FC<{ content?: React.ReactNode; darkSidebar?: boolean }> = ({ children, content, darkSidebar }) => {
     return (

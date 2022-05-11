@@ -1,6 +1,6 @@
 import ActionTypes from "./actionTypes";
 import { getAppStore } from "../../store";
-import { ICalorieEntry } from "../../../models/CalorieEntry";
+import { ICalorieEntry, ICalorieStats } from "../../../models/CalorieEntry";
 import moment from "moment";
 
 const getDateKeyStr = (date: moment.MomentInput) => moment(date).utc().format("DD-MM-YYYY");
@@ -51,7 +51,18 @@ export class CalorieEntryStoreActions {
         return getAppStore().getState().calorieEntry.data[getDateKeyStr(date)];
     }
 
+    /**
+     * Saves the calorie stats for the current day (today).
+     */
+    static saveCalorieStats(stats: ICalorieStats) {
+        getAppStore().dispatch({ type: ActionTypes.SAVE_CALORIE_STATS, payload: stats });
+    }
+
     static getActiveDate() {
         return getAppStore().getState().calorieEntry.activeDate;
+    }
+
+    static getCalorieStats() {
+        return getAppStore().getState().calorieEntry.calorieStats;
     }
 }
