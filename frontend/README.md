@@ -1,6 +1,6 @@
-# MyGYM Management Frontend (React-Typescript)
-> Minimal starter with hot module replacement (HMR) for rapid development.
+# Simple Calorie App Frontend (React-Typescript)
 
+## Main tech stack/components
 * **[React](https://facebook.github.io/react/)** (17.x)
 * **[Webpack](https://webpack.js.org/)** (5.x)
 * **[Typescript](https://www.typescriptlang.org/)** (4.x)
@@ -12,37 +12,9 @@
 * Test framework ([Jest](https://facebook.github.io/jest/))
 
 ## Installation
-1. Clone/download repo
+1. Clone/download repo and run the following command to install dependencies
 2. `yarn install` (or `npm install` for npm)
 
 ## Usage
-**Development**
-
-`yarn run start-dev`
-
-* Build app continuously (HMR enabled)
-* App served @ `http://localhost:8080`
-
-**Production**
-
-`yarn run start-prod`
-
-* Build app once (HMR disabled) to `/dist/`
-* App served @ `http://localhost:3000`
-
----
-
-**All commands**
-
-Command | Description
---- | ---
-`yarn run start-dev` | Build app continuously (HMR enabled) and serve @ `http://localhost:8080`
-`yarn run start-prod` | Build app once (HMR disabled) to `/dist/` and serve @ `http://localhost:3000`
-`yarn run build` | Build app to `/dist/`
-`yarn run test` | Run tests
-`yarn run lint` | Run linter
-`yarn run lint --fix` | Run linter and fix issues
-`yarn run start` | (alias of `yarn run start-dev`)
-
-**Note**: replace `yarn` with `npm` in `package.json` if you use npm.
-
+To start the development server, run
+`yarn start`
