@@ -30,7 +30,7 @@ const CalorieTable = () => {
             rowClassName={(rec) => (rec.calories > 0 ? Styles.PositiveCalorieRow : rec.calories < 0 ? Styles.NegativeCalorieRow : undefined)}
             columns={[
                 {
-                    title: "Info",
+                    title: "Description",
                     render: (_, rec) => (
                         <div style={{ display: "flex", alignItems: "center" }}>
                             {CalorieEntryIconsMap[rec.entryType]}

@@ -48,7 +48,7 @@ const CalorieEntryPopover: React.FC<CalorieEntryPopoverProps> = ({ type, trigger
         <Popover
             placement={placement || "bottom"}
             trigger="click"
-            title={editData ? "Update Calorie Entry" : "New Calorie Entry"}
+            title={<h3>{editData ? "Update Calorie Entry" : "New Calorie Entry"}</h3>}
             visible={visible}
             onVisibleChange={(r) => setVisible(r && !disabled)}
             content={

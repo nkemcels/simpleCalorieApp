@@ -17,7 +17,7 @@ const ActionsView = () => {
     const today = moment().startOf("day");
     const activeDateIsToday = moment(activeDate).startOf("day").isSame(today);
     return (
-        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+        <div style={{ marginBottom: 30, display: "flex", alignItems: "center" }}>
             <CalorieEntryPopover disabled={!activeDateIsToday} type="breakfast" btnText="BREAKFAST" promptText="What did you eat for breakfast?" />
             <CalorieEntryPopover disabled={!activeDateIsToday} type="lunch" btnText="LUNCH" promptText="What did you eat for lunch?" />
             <CalorieEntryPopover disabled={!activeDateIsToday} type="dinner" btnText="DINNER" promptText="What did you eat for dinner?" />
