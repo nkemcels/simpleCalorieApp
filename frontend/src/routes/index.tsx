@@ -25,7 +25,7 @@ const AppRoutes = () => {
             <GlobalRouterProvider />
             <Switch>
                 <Route path={HOME_ROUTES} component={RequiresAuth(ProtectedRoutes)} />
-                <Route path={AUTH_ROUTES} component={RequiresNoAuth(AuthRoutes)} />
+                <Route path={AUTH_ROUTES} component={AuthRoutes} />
                 <Redirect to={HOME_ROUTES} push />
             </Switch>
         </Router>

@@ -12,6 +12,8 @@ import { TUserData } from "../../../models/User/User";
 import classNames from "classnames";
 import { TNetworkState } from "../../../models/_Utils/NetworkState";
 import FeedbackIcon from "@ant-design/icons/LikeFilled";
+import { Modal } from "antd";
+import { RouteAction } from "../../../actions/RouteAction";
 
 type TAppAvatarProps = {
     name: string;
@@ -32,8 +34,7 @@ const AppAvatar: React.FC<TAppAvatarProps> = ({ name, avatarProps }) => {
  */
 export type SignedInUserDetailsProps = {
     userData: {
-        firstName: string;
-        lastName: string;
+        names: string;
         email: string;
     };
 };
@@ -84,12 +85,10 @@ export const SignedInUserDetails: React.FC<SignedInUserDetailsProps> = ({ userDa
     return (
         <div className={Styles.UserDetailsContainer}>
             <div className={Styles.Avatar}>
-                <Avatar>{userData?.firstName[0]}</Avatar>
+                <Avatar>{userData?.names[0]}</Avatar>
             </div>
             <div className={Styles.NameContainer}>
-                <div className={Styles.Name}>
-                    {userData?.firstName} {userData?.lastName}
-                </div>
+                <div className={Styles.Name}>{userData?.names}</div>
                 <div className={Styles.Email}>{userData?.email}</div>
             </div>
         </div>
@@ -161,28 +160,16 @@ export const SignedInButtonActions: React.FC<{ closePopover: () => void }> = ({ 
     const userObj = useSelector<RootState, TUserData>((r) => r.user.userData!);
     const handleLogout = () => {
         closePopover();
-        // AppManager.alert.confirmAction(
-        //     "Confirm Logout",
-        //     "Are you sure you want to Logout?",
-        //     (res) => {
-        //         if (res == "OK") AppManager.route.gotoLogout();
-        //     },
-        //     { okText: "YES, LOGOUT" },
-        // );
-    };
-    const handleAction = (action: string) => {
-        switch (action) {
-            case "give_feedback":
-                // showFeedbackActionModal();
-                closePopover();
-                break;
-        }
+        Modal.confirm({
+            title: "Confirm Logout",
+            content: "Are you sure you want to Logout?",
+            onOk: () => RouteAction.gotoLogout(),
+        });
     };
 
     return (
         <div className={Styles.SignedInActionsContainer}>
             <SignedInUserDetails userData={userObj} />
-            {/* <SignedInExtraActionList extraActions={DUMMY_EXTRA_ACTIONS} onAction={handleAction} /> */}
             <Button type="primary" style={{ width: "100%" }} onClick={handleLogout}>
                 <LogoutIcon /> Sign out
             </Button>
@@ -220,10 +207,8 @@ export const SignedInButtonDropdown: React.FC<{ disableOptions?: boolean }> = ({
                 className={classNames(Styles.SignedInButtonContainer, { [Styles.Disable]: disableOptions })}
                 onClick={() => !disableOptions && setPopoverVisible(true)}
             >
-                <AppAvatar avatarProps={{ className: Styles.Avatar }} name={userObj?.firstName || ""} />
-                <span className={Styles.UserName}>
-                    {userObj?.firstName} {userObj?.lastName[0]}.
-                </span>
+                <AppAvatar avatarProps={{ className: Styles.Avatar, size: 26 }} name={userObj?.names || ""} />
+                <span className={Styles.UserName}>{userObj?.names}</span>
                 {!disableOptions && <ChevronDownIcon className={Styles.ChevronIcon} />}
             </div>
         </Popover>

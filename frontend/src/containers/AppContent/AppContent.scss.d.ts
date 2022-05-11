@@ -1,12 +1,18 @@
 declare namespace AppContentScssNamespace {
     export interface IAppContentScss {
+        CalendarWrapper: string;
         Container: string;
-        ContentWrapper: string;
+        ContentContainer: string;
+        Desc: string;
         Header: string;
-        HeaderActions: string;
-        HeaderContainer: string;
-        Icon: string;
-        SubHeader: string;
+        MainText: string;
+        MainWrapper: string;
+        PiHeaderSectionInnerView: string;
+        Pie: string;
+        Section: string;
+        TextWrapper: string;
+        Unit: string;
+        Value: string;
     }
 }
 

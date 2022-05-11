@@ -11,12 +11,7 @@ const MainLayout: React.FC<{ content?: React.ReactNode; darkSidebar?: boolean }>
                 <AppHeader />
             </div>
             <div className={Styles.ContentWrapper}>
-                <HSplitView stateKey="MainLayout-Split-1" minWidth={160} maxWidth={400} defaultWidth={200}>
-                    <div className={Styles.SidebarContainer}>
-                        <AppSidebar theme={darkSidebar ? "dark" : "light"} />
-                    </div>
-                    <div className={Styles.ContentContainer}>{content || React.Children.toArray(children)[0]}</div>
-                </HSplitView>
+                <div className={Styles.ContentContainer}>{content || React.Children.toArray(children)[0]}</div>
             </div>
         </div>
     );

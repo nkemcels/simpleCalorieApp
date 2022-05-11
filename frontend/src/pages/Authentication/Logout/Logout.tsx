@@ -8,7 +8,7 @@ const LogoutPage = () => {
         AuthAction.dispatchLogout();
         setTimeout(RouteAction.gotoLogin, 2000);
     }, []);
-    return <AppLoadingPage loadingText="Logging out" />;
+    return <AppLoadingPage loadingText="Logging out" simple />;
 };
 
 export default LogoutPage;

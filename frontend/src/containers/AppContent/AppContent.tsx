@@ -1,70 +1,83 @@
-import { Alert } from "antd";
-import React, { useEffect, useState } from "react";
-import ChevronRightIcon from "@ant-design/icons/CaretRightOutlined";
-import { useSelector } from "react-redux";
-import { TNetworkState } from "../../models/_Utils/NetworkState";
-import { RootState } from "../../redux/reducers";
+import { Card, Col, Progress, Row } from "antd";
+import React from "react";
+import Calendar from "react-calendar";
 import Styles from "./AppContent.scss";
 
 type AppContentProps = {
-    header: React.ReactNode;
-    subHeader?: React.ReactNode;
-    headerActions?: React.ReactNode;
     containerRef?: React.RefObject<HTMLDivElement>;
-    showNetworkState?: boolean;
     noContentPadding?: boolean;
     contentPadding?: string | number;
 };
 
-const AppContent: React.FC<AppContentProps> = ({
-    children,
-    header,
-    subHeader,
-    headerActions,
-    containerRef,
-    showNetworkState = true,
-    noContentPadding,
-    contentPadding = "0 30px 15px 30px",
-}) => {
-    const networkState = useSelector<RootState, TNetworkState | undefined>((s) => s.app.networkState);
-    const [status, setStatus] = useState<TNetworkState>();
-    useEffect(() => {
-        if (status && status !== "online" && networkState == "online") {
-            setStatus(networkState);
-            setTimeout(() => {
-                setStatus(undefined);
-            }, 2500);
-        } else if (networkState !== "online") setStatus(networkState);
-    }, [networkState]);
+type PieHeaderSectionProps = {
+    value: number;
+    total: number;
+    unit: string;
+    mainText: string;
+    descText: string;
+};
+
+const PieHeaderSection: React.FC<PieHeaderSectionProps> = ({ value, total, unit, mainText, descText }) => {
+    return (
+        <div className={Styles.Section}>
+            <div className={Styles.TextWrapper}>
+                <span className={Styles.MainText}>{mainText}</span>
+                <span className={Styles.Desc}>{descText}</span>
+            </div>
+            <div className={Styles.Pie}>
+                <Progress
+                    type="circle"
+                    percent={(value * 100) / total}
+                    format={(percent) => (
+                        <span className={Styles.PiHeaderSectionInnerView}>
+                            <span className={Styles.Value}>{value}</span>
+                            <span className={Styles.Unit}>{unit}</span>
+                        </span>
+                    )}
+                    strokeWidth={10}
+                    size="small"
+                    width={55}
+                />
+            </div>
+        </div>
+    );
+};
+
+const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, noContentPadding, contentPadding = "0 30px 15px 30px" }) => {
     return (
         <>
             <div className={Styles.Container} ref={containerRef}>
-                {showNetworkState && (
-                    <div style={{ padding: "4px 7px" }}>
-                        {status && status !== "online" ? (
-                            <Alert message={status == "reconnecting" ? "Reconnecting..." : "You're offline"} type="error" showIcon />
-                        ) : status === "online" ? (
-                            <Alert message="Connection Restored" showIcon type="success" />
-                        ) : null}
-                    </div>
-                )}
-                <div className={Styles.HeaderContainer} style={{ padding: "15px 30px" }}>
-                    <div className={Styles.Header}>
-                        {header}
-                        {subHeader && (
-                            <div className={Styles.SubHeader}>
-                                <ChevronRightIcon className={Styles.Icon} /> {subHeader}
-                            </div>
-                        )}
-                    </div>
-                    <div className={Styles.HeaderActions}>{headerActions}</div>
+                <div className={Styles.Header}>
+                    <Row>
+                        <Col md={6} sm={12} xs={24}>
+                            <PieHeaderSection value={120} total={250} unit="kCal" mainText="Calories" descText="left for today" />
+                        </Col>
+                        <Col md={6} sm={12} xs={24}>
+                            <PieHeaderSection value={120} total={250} unit="kCal" mainText="Calories" descText="burnt" />
+                        </Col>
+                        <Col md={6} sm={12} xs={24}>
+                            <PieHeaderSection value={120} total={250} unit="kCal" mainText="Excercise" descText="today" />
+                        </Col>
+                        <Col md={6} sm={12} xs={24}>
+                            <PieHeaderSection value={120} total={250} unit="kCal" mainText="Weight" descText="10mins ago" />
+                        </Col>
+                    </Row>
                 </div>
-                <div className={Styles.ContentWrapper} style={{ padding: noContentPadding ? 0 : contentPadding }}>
-                    {children}
-                </div>
+                <Row className={Styles.ContentContainer}>
+                    <Col md={8} sm={24}>
+                        <Card className={Styles.CalendarWrapper}>
+                            <Calendar />
+                        </Card>
+                    </Col>
+                    <Col md={16} sm={24}>
+                        <div className={Styles.MainWrapper} style={{ padding: noContentPadding ? 0 : contentPadding }}>
+                            {children}
+                        </div>
+                    </Col>
+                </Row>
             </div>
         </>
     );
 };
 
-export default AppContent;
+export default AppDefaultContent;
