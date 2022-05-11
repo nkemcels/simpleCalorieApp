@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import moment from "moment";
+import { Types } from "mongoose";
 import Logger from "../../utils/Logger";
 import { CalorieEntryManager } from "./manager";
 
@@ -49,7 +50,7 @@ export class CalorieEntryRouteHandler {
     static async updateEntry(req: Request, res: Response, next: NextFunction) {
         try {
             const { entryId } = req.params;
-            const entry = await new CalorieEntryManager().updateEntry(entryId, req.body);
+            const entry = await new CalorieEntryManager().updateEntry(Types.ObjectId(entryId), req.body);
             res.status(200).json(entry);
         } catch (err) {
             Logger.error(`${err}`);
@@ -60,7 +61,7 @@ export class CalorieEntryRouteHandler {
     static async deleteEntry(req: Request, res: Response, next: NextFunction) {
         try {
             const { entryId } = req.params;
-            const entry = await new CalorieEntryManager().deleteEntry(entryId);
+            const entry = await new CalorieEntryManager().deleteEntry(Types.ObjectId(entryId));
             res.status(200).json(entry);
         } catch (err) {
             Logger.error(`${err}`);
