@@ -8,7 +8,7 @@ import Button from "antd/lib/button";
 import Styles from "./UserAccountButton.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/reducers";
-import { TUserData } from "../../../models/User/User";
+import { IUserData } from "../../../models/User";
 import classNames from "classnames";
 import { TNetworkState } from "../../../models/_Utils/NetworkState";
 import FeedbackIcon from "@ant-design/icons/LikeFilled";
@@ -157,7 +157,7 @@ const DUMMY_EXTRA_ACTIONS = [{ icon: <FeedbackIcon />, text: "Give Feedback", va
  * ```
  */
 export const SignedInButtonActions: React.FC<{ closePopover: () => void }> = ({ closePopover }) => {
-    const userObj = useSelector<RootState, TUserData>((r) => r.user.userData!);
+    const userObj = useSelector<RootState, IUserData>((r) => r.user.userData!);
     const handleLogout = () => {
         closePopover();
         Modal.confirm({
@@ -190,7 +190,7 @@ export const SignedInButtonActions: React.FC<{ closePopover: () => void }> = ({ 
  * {@link SignedInExtraActionListProps}
  */
 export const SignedInButtonDropdown: React.FC<{ disableOptions?: boolean }> = ({ disableOptions }) => {
-    const userObj = useSelector<RootState, TUserData | undefined>((r) => r.user.userData);
+    const userObj = useSelector<RootState, IUserData | undefined>((r) => r.user.userData);
     const [visible, setPopoverVisible] = useState(false);
     const handleClosePopover = () => {
         setPopoverVisible(false);

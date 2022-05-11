@@ -1,7 +1,7 @@
 import { LOGIN_API, SIGNUP_API, USER_AUTH_CREDENTIALS_API, TOKEN_REFRESH_API } from "../constants/apiEndpoints";
 import { HTTPHelper } from "../misc/httpHelper";
-import { TAuthCredentials, TLoginData, TSignupData } from "../models/Auth/Auth";
-import { QueryResultCallback } from "../models/Callback/Callback";
+import { TAuthCredentials, TLoginData, TSignupData } from "../models/Auth";
+import { QueryResultCallback } from "../models/Callback";
 import { AuthStoreActions } from "../redux/services/auth/actions";
 import { UserStoreActions } from "../redux/services/user/actions";
 

@@ -1,7 +1,7 @@
 import ActionTypes from "./actionTypes";
 import { getAppStore } from "../../store";
 import { LOCAL_STORAGE_KEYS } from "../../../constants/appVars";
-import { TAuthCredentials } from "../../../models/Auth/Auth";
+import { TAuthCredentials } from "../../../models/Auth";
 
 export class AuthStoreActions {
     static authenticatingUser(authenticating: boolean) {

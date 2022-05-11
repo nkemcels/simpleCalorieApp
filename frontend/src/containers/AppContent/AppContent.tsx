@@ -49,16 +49,13 @@ const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, 
             <div className={Styles.Container} ref={containerRef}>
                 <div className={Styles.Header}>
                     <Row>
-                        <Col md={6} sm={12} xs={24}>
+                        <Col md={8} sm={12} xs={24}>
                             <PieHeaderSection value={120} total={250} unit="kCal" mainText="Calories" descText="left for today" />
                         </Col>
-                        <Col md={6} sm={12} xs={24}>
+                        <Col md={8} sm={12} xs={24}>
                             <PieHeaderSection value={120} total={250} unit="kCal" mainText="Calories" descText="burnt" />
                         </Col>
-                        <Col md={6} sm={12} xs={24}>
-                            <PieHeaderSection value={120} total={250} unit="kCal" mainText="Excercise" descText="today" />
-                        </Col>
-                        <Col md={6} sm={12} xs={24}>
+                        <Col md={8} sm={12} xs={24}>
                             <PieHeaderSection value={120} total={250} unit="kCal" mainText="Weight" descText="10mins ago" />
                         </Col>
                     </Row>

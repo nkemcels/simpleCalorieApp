@@ -1,8 +1,0 @@
-enum ActionTypes {
-    SAVE_TENANTS = "SAVE_TENANTS",
-    LOADING_TENANTS = "LOADING_TENANTS",
-    SAVE_LOADED_TENANT = "SAVE_LOADED_TENANT",
-    LOGOUT_ACTION = "LOGOUT_ACTION",
-}
-
-export default ActionTypes;

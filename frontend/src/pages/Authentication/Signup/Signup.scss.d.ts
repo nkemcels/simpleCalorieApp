@@ -1,6 +1,7 @@
 declare namespace SignupScssNamespace {
     export interface ISignupScss {
         ActionWrapper: string;
+        BottomView: string;
         Container: string;
         ErrorAlert: string;
         FormContent: string;
@@ -11,10 +12,12 @@ declare namespace SignupScssNamespace {
         LoginBoxHeader: string;
         LogoWrapper: string;
         MainContent: string;
+        OrLine: string;
+        OrText: string;
         SignInTip: string;
         SigninText: string;
         SignupPrompt: string;
-        SubHeader: string;
+        StepsContainer: string;
         Text: string;
         WelcomeText: string;
     }

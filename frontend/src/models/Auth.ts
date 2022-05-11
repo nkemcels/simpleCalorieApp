@@ -1,11 +1,11 @@
-import { TUserData } from "./../User/User";
+import { IUserData } from "./User";
 
 export type TLoginData = {
     accessToken: string;
     userId: string;
     tokenType: string;
     expiresIn: number;
-    userData: TUserData;
+    userData: IUserData;
 };
 
 export type TAuthCredentials = {
@@ -14,6 +14,10 @@ export type TAuthCredentials = {
 };
 
 export type TSignupData = {
+    weight: number;
+    height: number;
+    gender: "male" | "female";
+    dateOfBirth: string;
     names: string;
     email: string;
     password: string;

@@ -1,9 +1,9 @@
-import { TUserData } from "../../../models/User/User";
+import { IUserData } from "../../../models/User";
 import createReducer from "../../utils/createReducer";
 import ActionTypes from "./actionTypes";
 
 export type UserStateT = {
-    userData?: TUserData;
+    userData?: IUserData;
     loadingData: boolean;
     userDataLoaded: boolean;
 };
@@ -16,7 +16,7 @@ export const initialState: UserStateT = {
 
 // App Reducer
 export default createReducer<UserStateT>(initialState, {
-    [ActionTypes.SAVE_USER]: (state, payload: TUserData) => ({
+    [ActionTypes.SAVE_USER]: (state, payload: IUserData) => ({
         ...state,
         userData: payload,
         userDataLoaded: true,

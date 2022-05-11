@@ -1,4 +1,4 @@
-import { TAuthCredentials } from "../../../models/Auth/Auth";
+import { TAuthCredentials } from "../../../models/Auth";
 import createReducer from "../../utils/createReducer";
 import ActionTypes from "./actionTypes";
 

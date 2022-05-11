@@ -18,11 +18,9 @@ const SignupPage = () => {
         setRedirectTo(history.location.state);
     }, []);
     return (
-        <SimpleCenteredLayout>
-            <div className={Styles.Container}>
-                <SignupBox onSignupComplete={handleSignupComplete} />
-            </div>
-        </SimpleCenteredLayout>
+        <div className={Styles.Container}>
+            <SignupBox onSignupComplete={handleSignupComplete} />
+        </div>
     );
 };
 

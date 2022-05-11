@@ -1,9 +1,9 @@
 import moment from "moment";
 
-export type TUserData = {
+export interface IUserData {
     _id: string;
     names: string;
     email: string;
     createdAt: moment.Moment;
     updatedAt: moment.Moment;
-};
+}

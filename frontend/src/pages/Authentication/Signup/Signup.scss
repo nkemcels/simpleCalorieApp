@@ -14,7 +14,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             background-color: rgba($light_grey_color, 0.2);
+            padding: 22px;
+            .FormContentHeader {
+                margin: 22px 0;
+                padding-bottom: 15px;
+                .WelcomeText {
+                    font-size: 28px;
+                    font-family: $default_font_bold;
+                    color: $dark_color;
+                    text-align: center;
+                }
+            }
             img {
                 width: 80%;
                 max-width: 250px;
@@ -60,38 +72,50 @@
             flex: 2;
             display: flex;
             justify-content: center;
+            flex-direction: column;
+
+            .BottomView {
+                .OrLine {
+                    margin: 30px 0 20px 0;
+                    position: relative;
+                    height: 1px;
+                    background-color: var(--light_grey_color);
+                }
+                .OrText {
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    padding: 3px 10px;
+                    color: var(--dark_grey_color);
+                }
+                .SignInTip {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    position: relative;
+                    margin-top: 35px;
+
+                    .Text {
+                        margin-right: 10px;
+                        text-align: center;
+                    }
+                }
+            }
 
             .FormContentContainer {
                 width: 100%;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                .SignInTip {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    width: 100%;
-                    position: relative;
-                    top: -10px;
+            }
 
-                    .Text {
-                        margin-right: 10px;
-                    }
-                }
-                .FormContentHeader {
-                    margin: 22px 0;
-                    padding-bottom: 15px;
-                    .WelcomeText {
-                        font-size: 28px;
-                        font-family: $default_font_bold;
-                        color: $dark_color;
-                    }
-                    .SubHeader {
-                        font-family: $default_font_semibold;
-                        font-size: 16px;
-                        color: $dark_grey_color;
-                    }
-                }
+            .StepsContainer {
+                margin: 5px 0 20px 0;
+                padding-bottom: 20px;
+                // border-bottom: 1px solid var(--background_color);
             }
 
             .FormContent {

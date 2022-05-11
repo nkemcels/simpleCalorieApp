@@ -1,5 +1,7 @@
 declare namespace HomePageScssNamespace {
     export interface IHomePageScss {
+        Actions: string;
+        CalorieEntryPopoverContent: string;
         CalorieTableView: string;
         Container: string;
     }

@@ -7,7 +7,7 @@ import { CheckOutlined, LockFilled } from "@ant-design/icons";
 import { AuthAction } from "../../../actions/AuthAction";
 import SimpleCenteredLayout from "../../../layouts/SimpleLayout/SimpleCenteredLayout";
 import { RouteAction } from "../../../actions/RouteAction";
-import { TAuthCredentials } from "../../../models/Auth/Auth";
+import { TAuthCredentials } from "../../../models/Auth";
 
 type LoginBoxProps = {
     onLoginComplete: () => void;
@@ -92,11 +92,9 @@ const LoginPage = () => {
         setRedirectTo(history.location.state);
     }, []);
     return (
-        <SimpleCenteredLayout>
-            <div className={Styles.Container}>
-                <LoginBox onLoginComplete={handleGotoLogin} />
-            </div>
-        </SimpleCenteredLayout>
+        <div className={Styles.Container}>
+            <LoginBox onLoginComplete={handleGotoLogin} />
+        </div>
     );
 };
 

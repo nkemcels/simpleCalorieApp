@@ -6,6 +6,41 @@ import { TOKEN_REFRESH_API } from "../constants/apiEndpoints";
 import { AuthStoreActions } from "../redux/services/auth/actions";
 import { getAppStore } from "../redux/store";
 
+/**
+ * Formats the URL so as to provide values for the its dynamic sections or
+ * query strings. <br>
+ * **Example**: `formatUrl("http://www.mydomain.com/{id}/{name}", {"query":"query_value"}, {id:1234, name:"name_value"})`
+ * will return `http://www.mydomain.com/1234/name_value?query=query_value`
+ * @param {String} endpoint The endpoint url
+ * @param {Object} queryStrings Object containing the query string parameters
+ * @param {Object} dynamicContent Object containing the values for the dynamic parts of the url
+ */
+function formatUrl(endpoint: string, queryStrings?: { [k: string]: string | undefined } | null, dynamicContent?: { [k: string]: string }) {
+    let qs = "";
+    queryStrings = queryStrings || {};
+    dynamicContent = dynamicContent || {};
+
+    Object.keys(queryStrings).forEach((key) => {
+        if (queryStrings![key]) {
+            const value = encodeURIComponent(queryStrings![key] || "");
+            qs = `${qs}${qs.length > 0 ? "&" : ""}${key}=${value}`;
+        }
+    });
+
+    Object.keys(dynamicContent).forEach((key) => {
+        if (dynamicContent![key]) {
+            const re = RegExp(`{${key}}`);
+            endpoint = endpoint.replace(re, dynamicContent![key]);
+        }
+    });
+
+    if (qs.length > 0) {
+        endpoint = `${endpoint}?${qs}`;
+    }
+
+    return endpoint;
+}
+
 // Handles server errors such as 500, 504 etc
 const verifyHTTPError = (err: AxiosError) => {
     if (err && err.response && err.response.status == 401) {
@@ -25,6 +60,8 @@ export class HTTPHelper {
         authorization: `Bearer ${token}`,
         ...extraHeaders,
     });
+
+    static formatUrl = formatUrl;
 
     /**
      * Performs a POST request to the provided `endpoint url`.
