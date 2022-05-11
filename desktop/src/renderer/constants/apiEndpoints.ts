@@ -1,5 +1,5 @@
-const API_BASE_URL =
-    process.env.APP_BACKEND_URL || `${window.location.protocol}//${window.location.hostname}${window.location.port ? ":" + 8080 : ""}`;
+const API_BASE_URL = 'http://api.calorieapp.celsoppe.com';
+//process.env.APP_BACKEND_URL || `${window.location.protocol}//${window.location.hostname}${window.location.port ? ":" + 8080 : ""}`;
 
 export const BASE_URL = API_BASE_URL;
 export const BASE_API = `${BASE_URL}/api/v1`;
