@@ -3,6 +3,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { useSelector } from "react-redux";
+import { CalorieEntryAction } from "../../actions/CalorieEntryAction";
 import { UserAction } from "../../actions/UserAction";
 import { ICalorieStats } from "../../models/CalorieEntry";
 import { IUserData } from "../../models/User";
@@ -114,13 +115,16 @@ const CheckInWeight = () => {
 const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, noContentPadding, contentPadding = "0 30px 15px 30px" }) => {
     const calorieStats = useSelector<RootState, ICalorieStats | undefined>((r) => r.calorieEntry.calorieStats);
     const activeDate = useSelector<RootState, Date>((r) => r.calorieEntry.activeDate);
-    const today = moment().startOf("day");
-    const activeDateIsToday = moment(activeDate).startOf("day").isSame(today);
     const userData = useSelector<RootState, IUserData | undefined>((r) => r.user.userData);
+
+    const handleDateChanged = (newDate: Date) => {
+        CalorieEntryAction.store.setActiveDate(newDate);
+    };
+
     return (
         <>
             <div className={Styles.Container} ref={containerRef}>
-                {activeDateIsToday && calorieStats && (
+                {calorieStats && (
                     <div className={Styles.Header}>
                         <Row>
                             <Col md={8} sm={12} xs={24}>
@@ -159,7 +163,7 @@ const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, 
                 <Row className={Styles.ContentContainer}>
                     <Col md={8} sm={24}>
                         <Card className={Styles.CalendarWrapper}>
-                            <Calendar />
+                            <Calendar maxDate={new Date()} value={activeDate} onChange={handleDateChanged} />
                         </Card>
                     </Col>
                     <Col md={16} sm={24}>

@@ -3,13 +3,14 @@ import { getAppStore } from "../../store";
 import { ICalorieEntry, ICalorieStats } from "../../../models/CalorieEntry";
 import moment from "moment";
 
-const getDateKeyStr = (date: moment.MomentInput) => moment(date).utc().format("DD-MM-YYYY");
+const getDateKeyStr = (date: moment.MomentInput) => moment(date).format("DD-MM-YYYY");
 
 export class CalorieEntryStoreActions {
     /**
      * Saves the entries of the specified date.
      */
     static saveDateEntries(date: moment.MomentInput, entries: ICalorieEntry[]) {
+        console.log("SAVING AS ", getDateKeyStr(date));
         const entryRecord = { [getDateKeyStr(date)]: entries };
         getAppStore().dispatch({ type: ActionTypes.SAVE_DATE_ENTRIES, payload: entryRecord });
     }
@@ -56,6 +57,10 @@ export class CalorieEntryStoreActions {
      */
     static saveCalorieStats(stats: ICalorieStats) {
         getAppStore().dispatch({ type: ActionTypes.SAVE_CALORIE_STATS, payload: stats });
+    }
+
+    static setActiveDate(date: Date) {
+        getAppStore().dispatch({ type: ActionTypes.SET_ACTIVE_DATE, payload: date });
     }
 
     static getActiveDate() {

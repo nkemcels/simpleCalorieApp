@@ -19,8 +19,8 @@ export class CalorieEntryManager {
     }
 
     async getEntriesByDate(dateInput: Date) {
-        const startDate = moment(dateInput).utc().startOf("day").toDate();
-        const endDate = moment(dateInput).utc().endOf("day").toDate();
+        const startDate = moment(dateInput).startOf("day").toDate();
+        const endDate = moment(dateInput).endOf("day").toDate();
 
         return this.getEntriesByDateRange(startDate, endDate);
     }
@@ -49,9 +49,9 @@ export class CalorieEntryManager {
         const bmr = user.gender === "male" ? this.calculateMaleUserBmr(user) : this.calculateFemaleUserBmr(user);
 
         const entries = await this.getEntriesByDate(dateInput);
-        const totalCalories = bmr + entries.reduce((t, r) => t + (r.calories > 0 ? r.calories : 0), 0);
+        const totalCalories = entries.reduce((t, r) => t + (r.calories > 0 ? r.calories : 0), 0);
 
-        const minsSince12AM = moment().diff(moment().startOf("day"), "minutes");
+        const minsSince12AM = moment(dateInput).diff(moment(dateInput).startOf("day"), "minutes");
 
         const burntBMRCalories = (minsSince12AM * bmr) / (24 * 60);
         const burntTotalCalories = burntBMRCalories + entries.reduce((t, r) => t - (r.calories < 0 ? r.calories : 0), 0);

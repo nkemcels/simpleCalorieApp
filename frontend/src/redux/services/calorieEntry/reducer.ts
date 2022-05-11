@@ -1,3 +1,4 @@
+import moment from "moment";
 import { ICalorieEntry, ICalorieStats } from "../../../models/CalorieEntry";
 import createReducer from "../../utils/createReducer";
 import ActionTypes from "./actionTypes";
@@ -28,6 +29,11 @@ export default createReducer<TCalorieEntryState>(initialState, {
     [ActionTypes.SAVE_CALORIE_STATS]: (state, payload: ICalorieStats) => ({
         ...state,
         calorieStats: payload,
+    }),
+
+    [ActionTypes.SET_ACTIVE_DATE]: (state, payload: Date) => ({
+        ...state,
+        activeDate: payload,
     }),
 
     [ActionTypes.LOGOUT_ACTION]: (state) => ({
