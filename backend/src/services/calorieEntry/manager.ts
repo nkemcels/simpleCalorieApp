@@ -24,7 +24,7 @@ export class CalorieEntryManager {
     }
 
     async getEntriesByDateRange(startDate: Date, endDate: Date) {
-        return CalorieEntry.find({ createdAt: { $gte: startDate, $lte: endDate } });
+        return CalorieEntry.find({ createdAt: { $gte: startDate, $lte: endDate } }).sort("-createdAt");
     }
 
     async deleteEntry(entryId: Types.ObjectId) {

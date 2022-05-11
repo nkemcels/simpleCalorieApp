@@ -2,7 +2,7 @@ import mongoose, { Types, Schema } from "mongoose";
 
 export interface CalorieEntryAttr {
     name: string;
-    entryType: "food" | "excercise";
+    entryType: "breakfast" | "lunch" | "dinner" | "snack" | "exercise";
     calories: number;
 }
 

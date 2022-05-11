@@ -2,6 +2,10 @@ import mongoose, { Types, Schema } from "mongoose";
 import { PasswordManager } from "../../../utils/Password";
 
 export interface UserAttr {
+    weight: number;
+    height: number;
+    gender: "male" | "female";
+    dateOfBirth: string;
     names: string;
     email: string;
     password: string;
@@ -20,6 +24,10 @@ interface UserModel extends mongoose.Model<UserDoc> {
 const UserSchema = new Schema<UserDoc, UserModel>(
     {
         names: { type: String },
+        dateOfBirth: { type: Date },
+        gender: { type: String },
+        height: { type: Number },
+        weight: { type: Number },
         email: { type: String, unique: true },
         password: { type: String, select: false },
     },
