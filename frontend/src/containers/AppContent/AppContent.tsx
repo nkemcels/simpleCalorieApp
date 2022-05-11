@@ -134,13 +134,14 @@ const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, 
                                     unit="kCal"
                                     mainText="Calories"
                                     descText="consumed"
+                                    strokeColor="#2979FF"
                                 />
                             </Col>
                             <Col md={6} sm={12} xs={24}>
                                 <PieHeaderSection
                                     value={calorieStats.burntCalories}
                                     total={calorieStats.burntCalories}
-                                    strokeColor="red"
+                                    strokeColor="#C62828"
                                     unit="kCal"
                                     mainText="Calories"
                                     descText="burnt (+BMR burnt)"
@@ -150,7 +151,7 @@ const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, 
                                 <PieHeaderSection
                                     value={calorieStats.burntBMR}
                                     total={calorieStats.bmr}
-                                    strokeColor="orange"
+                                    strokeColor="#EF6C00"
                                     unit="kCal"
                                     mainText="BMR Burnt"
                                     descText={`out of ${calorieStats.bmr.toFixed(0)} kCal`}

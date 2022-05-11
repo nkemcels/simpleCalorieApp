@@ -3,6 +3,7 @@ import { Button, Card, Form, Input, message, notification, Popover, PopoverProps
 import React, { useEffect, useState } from "react";
 import { CalorieEntryAction } from "../../../actions/CalorieEntryAction";
 import { ICalorieEntry } from "../../../models/CalorieEntry";
+import { CalorieEntryIconsMap } from "./CalorieEntryIcons";
 import Styles from "./HomePage.scss";
 
 type CalorieEntryPopoverProps = {
@@ -83,8 +84,14 @@ const CalorieEntryPopover: React.FC<CalorieEntryPopoverProps> = ({ type, trigger
             }
         >
             {trigger || (
-                <Button style={{ marginRight: 20, borderRadius: 15, minWidth: 120 }} icon={<PlusOutlined />} disabled={disabled}>
-                    {btnText}
+                <Button
+                    style={{ marginRight: 20, borderRadius: 15, minWidth: 120 }}
+                    // icon={}
+                    disabled={disabled}
+                >
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                        {CalorieEntryIconsMap[type] || <PlusOutlined />} <span style={{ marginLeft: 10 }}>{btnText}</span>
+                    </span>
                 </Button>
             )}
         </Popover>
