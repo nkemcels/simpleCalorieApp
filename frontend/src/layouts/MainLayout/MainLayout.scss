@@ -51,7 +51,7 @@
     z-index: 2;
 
     .LogoWrapper {
-        width: 250px;
+        width: 285px;
         display: flex;
         align-items: center;
 
@@ -61,6 +61,14 @@
             padding-left: 15px;
             font-size: 17px;
             color: #fff;
+        }
+
+        .Location {
+            font-size: 14px;
+            font-family: $default_font;
+            margin-left: 15px;
+            padding-left: 15px;
+            border-left: 1px solid #ccc;
         }
     }
 

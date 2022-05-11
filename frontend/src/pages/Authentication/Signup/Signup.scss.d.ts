@@ -18,6 +18,7 @@ declare namespace SignupScssNamespace {
         SigninText: string;
         SignupPrompt: string;
         StepsContainer: string;
+        SubText: string;
         Text: string;
         WelcomeText: string;
     }

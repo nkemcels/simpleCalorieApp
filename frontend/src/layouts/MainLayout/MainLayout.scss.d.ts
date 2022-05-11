@@ -11,6 +11,7 @@ declare namespace MainLayoutScssNamespace {
         HeaderContainer: string;
         Inner: string;
         ItemIcon: string;
+        Location: string;
         LogoWrapper: string;
         MenuContainer: string;
         MenuItemBadge: string;

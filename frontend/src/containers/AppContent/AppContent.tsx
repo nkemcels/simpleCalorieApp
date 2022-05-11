@@ -127,27 +127,37 @@ const AppDefaultContent: React.FC<AppContentProps> = ({ children, containerRef, 
                 {calorieStats && (
                     <div className={Styles.Header}>
                         <Row>
-                            <Col md={8} sm={12} xs={24}>
+                            <Col md={6} sm={12} xs={24}>
                                 <PieHeaderSection
-                                    value={calorieStats.caloriesLeft}
+                                    value={calorieStats.totalCalories}
                                     total={calorieStats.totalCalories}
                                     unit="kCal"
                                     mainText="Calories"
-                                    descText="you have left"
+                                    descText="consumed"
                                 />
                             </Col>
-                            <Col md={8} sm={12} xs={24}>
+                            <Col md={6} sm={12} xs={24}>
                                 <PieHeaderSection
                                     value={calorieStats.burntCalories}
-                                    total={calorieStats.totalCalories}
+                                    total={calorieStats.burntCalories}
                                     strokeColor="red"
                                     unit="kCal"
                                     mainText="Calories"
-                                    descText="burnt"
+                                    descText="burnt (+BMR burnt)"
+                                />
+                            </Col>
+                            <Col md={6} sm={12} xs={24}>
+                                <PieHeaderSection
+                                    value={calorieStats.burntBMR}
+                                    total={calorieStats.bmr}
+                                    strokeColor="orange"
+                                    unit="kCal"
+                                    mainText="BMR Burnt"
+                                    descText={`out of ${calorieStats.bmr.toFixed(0)} kCal`}
                                 />
                             </Col>
                             {userData && (
-                                <Col md={8} sm={12} xs={24}>
+                                <Col md={6} sm={12} xs={24}>
                                     <PieHeaderSection
                                         value={userData.weight}
                                         total={userData.weight}

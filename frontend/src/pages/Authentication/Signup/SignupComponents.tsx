@@ -69,7 +69,7 @@ export const PersonalDetailsForm: React.FC<SignupFormProps> = ({ onComplete, loa
             <Form.Item
                 name="height"
                 label="Your height (in cm)"
-                requiredMark
+                required
                 rules={[
                     ({ getFieldValue }) => ({
                         validator: (_, val) =>
@@ -87,7 +87,7 @@ export const PersonalDetailsForm: React.FC<SignupFormProps> = ({ onComplete, loa
             <Form.Item
                 name="weight"
                 label="Your weight (in kg)"
-                requiredMark
+                required
                 rules={[
                     ({ getFieldValue }) => ({
                         validator: (_, val) =>
@@ -105,6 +105,7 @@ export const PersonalDetailsForm: React.FC<SignupFormProps> = ({ onComplete, loa
             <Form.Item
                 name="dateOfBirth"
                 label="Date of birth"
+                required
                 rules={[
                     ({ getFieldValue }) => ({
                         validator: (_, val) =>

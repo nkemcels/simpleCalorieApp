@@ -9,7 +9,6 @@ import { useAppDataSynchronizer } from "../../../hooks/useAppDataSynchronizer";
 import { ICalorieEntry } from "../../../models/CalorieEntry";
 import { RootState } from "../../../redux/reducers";
 import CalorieTable from "./CalorieTable";
-import EnergySummary from "./EnergySummary";
 import Styles from "./HomePage.scss";
 
 type CalorieEntryPopoverProps = {
@@ -103,9 +102,6 @@ const HomePage = () => {
             <ActionsView />
             <Card className={Styles.CalorieTableView}>
                 <CalorieTable />
-            </Card>
-            <Card>
-                <EnergySummary />
             </Card>
         </AppDefaultContent>
     );

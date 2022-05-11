@@ -10,8 +10,10 @@ export const AppHeader = () => {
     return (
         <div className={Styles.Header}>
             <div className={Styles.LogoWrapper}>
-                <Logo type="with-text-right" imgStyle={{ width: 35, height: 35 }} />
-                <h4 className={Styles.Name}>MyGYM Console</h4>
+                <h4 className={Styles.Name}>
+                    Simple Calorie App
+                    <span className={Styles.Location}>Home</span>
+                </h4>
             </div>
             <div className={Styles.HeaderActions}>
                 <div className={Styles.UserAccountBtn}>
