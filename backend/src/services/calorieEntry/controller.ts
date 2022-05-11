@@ -67,4 +67,21 @@ export class CalorieEntryRouteHandler {
             next(err);
         }
     }
+
+    static async getCalorieStats(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { date } = req.query;
+            const { _id: userId } = req.user!;
+            const entry = await new CalorieEntryManager().getCalorieStats(
+                userId,
+                moment(date as string)
+                    .utc()
+                    .toDate()
+            );
+            res.status(200).json(entry);
+        } catch (err) {
+            Logger.error(`${err}`);
+            next(err);
+        }
+    }
 }

@@ -9,5 +9,6 @@ router.get("/queryDate", DateQueryValidationCheck, CalorieEntryRouteHandler.getE
 router.get("/queryRange", DateRangeQueryValidationCheck, CalorieEntryRouteHandler.getEntriesByDateRange);
 router.put("/:entryId", CalorieEntryRouteHandler.updateEntry);
 router.delete("/:entryId", CalorieEntryRouteHandler.deleteEntry);
+router.get("/stats", DateQueryValidationCheck, CalorieEntryRouteHandler.getCalorieStats);
 
 export default router;
