@@ -4,6 +4,7 @@ export interface CalorieEntryAttr {
     name: string;
     entryType: "breakfast" | "lunch" | "dinner" | "snack" | "exercise";
     calories: number;
+    user: Types.ObjectId;
 }
 
 export interface CalorieEntryDoc extends CalorieEntryAttr, mongoose.Document {
@@ -19,6 +20,7 @@ interface CalorieEntryModel extends mongoose.Model<CalorieEntryDoc> {
 const CalorieEntrySchema = new Schema<CalorieEntryDoc, CalorieEntryModel>(
     {
         name: String,
+        user: { type: Schema.Types.ObjectId, ref: "User" },
         entryType: String,
         calories: Number,
     },

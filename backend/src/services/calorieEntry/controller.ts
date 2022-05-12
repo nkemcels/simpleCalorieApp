@@ -7,7 +7,8 @@ import { CalorieEntryManager } from "./manager";
 export class CalorieEntryRouteHandler {
     static async addNewEntry(req: Request, res: Response, next: NextFunction) {
         try {
-            const entry = await new CalorieEntryManager().addNewEntry(req.body);
+            const { _id: userId } = req.user!;
+            const entry = await new CalorieEntryManager().addNewEntry(req.body, userId);
             res.status(200).json(entry);
         } catch (err) {
             Logger.error(`${err}`);
@@ -18,10 +19,12 @@ export class CalorieEntryRouteHandler {
     static async getEntriesByDate(req: Request, res: Response, next: NextFunction) {
         try {
             const { date } = req.query;
+            const { _id: userId } = req.user!;
             const entries = await new CalorieEntryManager().getEntriesByDate(
                 moment(date as string)
                     .utc()
-                    .toDate()
+                    .toDate(),
+                userId
             );
             res.status(200).json(entries);
         } catch (err) {
@@ -33,13 +36,14 @@ export class CalorieEntryRouteHandler {
     static async getEntriesByDateRange(req: Request, res: Response, next: NextFunction) {
         try {
             const { start, end } = req.query;
+            const { _id: userId } = req.user!;
             const startDate = moment(start as string)
                 .utc()
                 .toDate();
             const endDate = moment(end as string)
                 .utc()
                 .toDate();
-            const entries = await new CalorieEntryManager().getEntriesByDateRange(startDate, endDate);
+            const entries = await new CalorieEntryManager().getEntriesByDateRange(startDate, endDate, userId);
             res.status(200).json(entries);
         } catch (err) {
             Logger.error(`${err}`);
@@ -50,7 +54,8 @@ export class CalorieEntryRouteHandler {
     static async updateEntry(req: Request, res: Response, next: NextFunction) {
         try {
             const { entryId } = req.params;
-            const entry = await new CalorieEntryManager().updateEntry(Types.ObjectId(entryId), req.body);
+            const { _id: userId } = req.user!;
+            const entry = await new CalorieEntryManager().updateEntry(Types.ObjectId(entryId), req.body, userId);
             res.status(200).json(entry);
         } catch (err) {
             Logger.error(`${err}`);
@@ -61,7 +66,8 @@ export class CalorieEntryRouteHandler {
     static async deleteEntry(req: Request, res: Response, next: NextFunction) {
         try {
             const { entryId } = req.params;
-            const entry = await new CalorieEntryManager().deleteEntry(Types.ObjectId(entryId));
+            const { _id: userId } = req.user!;
+            const entry = await new CalorieEntryManager().deleteEntry(Types.ObjectId(entryId), userId);
             res.status(200).json(entry);
         } catch (err) {
             Logger.error(`${err}`);
